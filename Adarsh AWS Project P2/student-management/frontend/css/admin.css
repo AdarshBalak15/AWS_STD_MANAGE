@@ -1,0 +1,113 @@
+/* 
+==================================================
+ADMIN SYSTEMS STYLE SHEET: css/admin.css
+AWS-Bound Student Management System Frontend
+==================================================
+*/
+
+/* Admin Header & Cards Override */
+.admin-card-border-danger {
+  border-left: 5px solid var(--danger-color) !important;
+}
+.admin-card-border-success {
+  border-left: 5px solid var(--success-color) !important;
+}
+.admin-card-border-warning {
+  border-left: 5px solid var(--warning-color) !important;
+}
+
+/* Filtering Layout Panel */
+.filter-panel {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-input-group {
+  position: relative;
+  flex-grow: 1;
+  min-width: 250px;
+}
+
+.search-input-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-input-group .form-control {
+  padding-left: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  height: 45px;
+}
+
+.search-input-group .form-control:focus {
+  background-color: var(--card-bg);
+  border-color: var(--primary-color);
+  box-shadow: none;
+}
+
+.filter-select {
+  height: 45px;
+  min-width: 160px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  padding: 0 1rem;
+}
+
+.filter-select:focus {
+  background-color: var(--card-bg);
+  border-color: var(--primary-color);
+  box-shadow: none;
+}
+
+/* Split-Panel Approvals Portal Layout */
+.portal-split-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .portal-split-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.document-preview-container {
+  background-color: #1E293B;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.action-card {
+  height: 100%;
+}
+
+.student-mini-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}

@@ -1,0 +1,288 @@
+/* 
+==================================================
+DASHBOARD SYSTEM STYLE SHEET: css/dashboard.css
+AWS-Bound Student Management System Frontend
+==================================================
+*/
+
+/* Layout Grid Setup */
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* --------------------------------------------------
+SIDEBAR LAYOUT
+-------------------------------------------------- */
+#sidebar {
+  min-width: var(--sidebar-width);
+  max-width: var(--sidebar-width);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-color);
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
+}
+
+#sidebar.active {
+  min-width: var(--sidebar-collapsed-width);
+  max-width: var(--sidebar-collapsed-width);
+}
+
+#sidebar .sidebar-header {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+#sidebar .sidebar-logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+#sidebar.active .sidebar-logo span {
+  display: none;
+}
+
+#sidebar ul.components {
+  padding: 1.5rem 0.75rem;
+}
+
+#sidebar ul li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+#sidebar ul li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.8rem 1rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all var(--transition-speed);
+}
+
+#sidebar ul li a i {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+  transition: color var(--transition-speed);
+}
+
+#sidebar ul li a:hover,
+#sidebar ul li.active > a {
+  color: var(--primary-color);
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+#sidebar ul li.active > a i {
+  color: var(--primary-color);
+}
+
+#sidebar.active ul.components {
+  padding: 1.5rem 0.5rem;
+}
+
+#sidebar.active ul li a {
+  justify-content: center;
+  padding: 0.8rem;
+}
+
+#sidebar.active ul li a span {
+  display: none;
+}
+
+/* --------------------------------------------------
+CONTENT CONTAINER
+-------------------------------------------------- */
+#content {
+  width: calc(100% - var(--sidebar-width));
+  padding-left: 0;
+  min-height: 100vh;
+  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  margin-left: var(--sidebar-width);
+}
+
+#content.active {
+  width: calc(100% - var(--sidebar-collapsed-width));
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+/* Navbar Global Layout */
+.dashboard-navbar {
+  height: var(--navbar-height);
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* --------------------------------------------------
+DASHBOARD CARDS & STATS
+-------------------------------------------------- */
+.stat-card {
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.stat-icon.primary { background-color: rgba(37, 99, 235, 0.1); color: var(--primary-color); }
+.stat-icon.success { background-color: rgba(16, 185, 129, 0.1); color: var(--success-color); }
+.stat-icon.warning { background-color: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
+.stat-icon.danger { background-color: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+
+/* Dashboard Tables */
+.table-custom {
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.table-custom th {
+  background-color: rgba(37, 99, 235, 0.02);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-custom td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.table-custom tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status Badges */
+.badge-custom {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-custom.approved { background-color: rgba(16, 185, 129, 0.1); color: var(--success-color); }
+.badge-custom.pending { background-color: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
+.badge-custom.rejected { background-color: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+
+/* Notification Items List */
+.notification-item {
+  display: flex;
+  gap: 12px;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* User Menu Dropdown */
+.profile-dropdown-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+/* --------------------------------------------------
+RESPONSIVE LAYOUT MEDIA QUERIES
+-------------------------------------------------- */
+@media (max-width: 992px) {
+  #sidebar {
+    margin-left: calc(-1 * var(--sidebar-width));
+  }
+  #sidebar.active {
+    margin-left: 0;
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+  }
+  #sidebar.active ul.components {
+    padding: 1.5rem 0.75rem;
+  }
+  #sidebar.active ul li a {
+    justify-content: flex-start;
+    padding: 0.8rem 1rem;
+  }
+  #sidebar.active ul li a span {
+    display: block;
+  }
+  #sidebar.active .sidebar-logo span {
+    display: block;
+  }
+  #content {
+    width: 100%;
+    margin-left: 0;
+  }
+  #content.active {
+    width: 100%;
+    margin-left: 0;
+  }
+  .dashboard-navbar {
+    padding: 0 1rem;
+  }
+}

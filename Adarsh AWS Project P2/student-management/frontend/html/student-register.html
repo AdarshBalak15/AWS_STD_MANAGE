@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register as a new student on the EduCloud Portal. Fill in details and upload profile photos.">
+  <title>Student Registration - EduCloud</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Global Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- Login/Auth Stylesheet -->
+  <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="auth-wrapper" style="min-height: 100vh;">
+    <div class="auth-card slide-up" style="max-width: 500px;">
+      
+      <!-- Header -->
+      <div class="auth-header pb-2">
+        <div class="auth-logo">
+          <i class="fas fa-user-plus text-primary"></i>
+        </div>
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-subtitle">Register to begin student document administration</p>
+      </div>
+
+      <!-- Body Form -->
+      <div class="auth-body">
+        <form id="student-register-form" novalidate>
+          
+          <!-- Avatar Upload Component -->
+          <div class="mb-4 text-center">
+            <label class="form-label text-secondary small fw-bold d-block mb-2">Profile Photo (Optional)</label>
+            
+            <div class="d-flex flex-column align-items-center justify-content-center">
+              <!-- Upload Drag Area -->
+              <div id="profile-upload-zone" class="profile-upload-zone w-100">
+                <!-- Preview Container -->
+                <div id="profile-preview-container" style="display: none;">
+                  <img id="profile-photo-preview" src="#" alt="Profile Photo Preview" class="profile-preview-circle">
+                  <button type="button" id="remove-preview" class="remove-preview-btn" aria-label="Remove image">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                
+                <div id="upload-placeholder" class="text-center">
+                  <div class="upload-icon-label"><i class="fas fa-cloud-upload-alt"></i></div>
+                  <div class="upload-instructions font-weight-bold text-primary">Drag & Drop profile picture here</div>
+                  <div class="upload-instructions text-secondary">or click to browse local files</div>
+                  <div class="upload-instructions text-muted small mt-1">Accepts: JPG, JPEG, PNG (Max 1MB)</div>
+                </div>
+                
+                <!-- Actual Hidden Input -->
+                <input type="file" id="register-photo" accept="image/*" style="display: none;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Information -->
+          <h6 class="border-bottom pb-2 mb-3 text-primary font-weight-bold"><i class="fas fa-user me-2"></i>Account Details</h6>
+          
+          <!-- Name -->
+          <div class="form-group-custom">
+            <input type="text" id="register-name" class="form-control-custom" placeholder="Full Name" required autocomplete="name">
+            <i class="fas fa-id-card"></i>
+            <div class="invalid-feedback ps-2">Please enter your full name (minimum 3 characters).</div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group-custom">
+            <input type="email" id="register-email" class="form-control-custom" placeholder="Email Address" required autocomplete="email">
+            <i class="fas fa-envelope"></i>
+            <div class="invalid-feedback ps-2">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group-custom">
+            <input type="password" id="register-password" class="form-control-custom" placeholder="Security Password" required autocomplete="new-password">
+            <i class="fas fa-lock"></i>
+            <span class="password-toggle-btn" id="togglePasswordRegister" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </span>
+            <div class="invalid-feedback ps-2">Password must be at least 6 characters.</div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group-custom">
+            <input type="password" id="register-confirm-password" class="form-control-custom" placeholder="Confirm Password" required autocomplete="new-password">
+            <i class="fas fa-shield-alt"></i>
+            <span class="password-toggle-btn" id="toggleConfirmPasswordRegister" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </span>
+            <div class="invalid-feedback ps-2">Passwords do not match.</div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-premium w-100 py-3 rounded-pill mb-3">
+            <i class="fas fa-user-plus me-2"></i>Create Student Account
+          </button>
+
+          <!-- Back Option links -->
+          <div class="text-center mt-3 small">
+            <span class="text-secondary">Already registered?</span>
+            <a href="student-login.html" class="text-primary font-weight-bold text-decoration-none ms-1">Login here</a>
+          </div>
+          <div class="text-center mt-2 small">
+            <a href="index.html" class="text-decoration-none text-secondary"><i class="fas fa-arrow-left me-1"></i>Back to Home</a>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Global App JS -->
+  <script src="js/app.js"></script>
+  <!-- Register Page Script Logic -->
+  <script src="js/register.js"></script>
+</body>
+</html>

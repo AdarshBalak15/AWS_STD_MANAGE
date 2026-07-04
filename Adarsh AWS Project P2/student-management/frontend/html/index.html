@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Secure, cloud-native Student Management & Document Verification portal powered by AWS cloud architecture.">
+  <title>EduCloud - Cloud-Based Student Management System</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Global Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <style>
+    /* Unique Home Page Styles */
+    .hero-section {
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 100% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+    }
+    
+    .hero-img-placeholder {
+      border-radius: 20px;
+      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.12), 0 15px 30px -10px rgba(37,99,235,0.1);
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+      padding: 15px;
+      position: relative;
+    }
+
+    .feature-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background-color: rgba(37, 99, 235, 0.1);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      transition: all var(--transition-speed);
+    }
+
+    .feature-box:hover .feature-icon-wrapper {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      transform: scale(1.1);
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: color var(--transition-speed);
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary-color);
+    }
+
+    .cloud-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(37, 99, 235, 0.08);
+      color: var(--primary-color);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg fixed-top border-bottom" style="background-color: rgba(var(--card-bg), 0.8); backdrop-filter: blur(10px); z-index: 1030; border-color: var(--border-color) !important;">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 text-primary font-weight-bold" href="index.html" style="font-weight: 700; font-size: 1.4rem;">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduCloud</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-secondary"></i>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About Architecture</a>
+          </li>
+        </ul>
+        
+        <div class="d-flex align-items-center gap-3">
+          <!-- Dark Mode Toggle -->
+          <button id="theme-toggle" class="btn btn-link text-decoration-none text-secondary p-2" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <!-- Dropdown Login Options -->
+          <div class="dropdown">
+            <button class="btn btn-outline-premium dropdown-toggle" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-sign-in-alt me-1"></i>Login
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2 p-2" aria-labelledby="loginDropdown" style="border-radius:12px; min-width:180px;">
+              <li>
+                <a class="dropdown-item rounded-3 py-2 px-3 text-secondary" href="student-login.html">
+                  <i class="fas fa-user-graduate me-2 text-primary"></i>Student Login
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2 px-3 text-secondary" href="admin-login.html">
+                  <i class="fas fa-user-shield me-2 text-danger"></i>Admin Portal
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <a href="student-register.html" class="btn-premium">
+            <i class="fas fa-user-plus me-1"></i>Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container mt-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 slide-up">
+          <div class="cloud-badge">
+            <i class="fab fa-aws"></i> AWS Cloud Integrated System
+          </div>
+          <h1 class="display-4 fw-bold lh-sm text-primary mb-3">
+            Next-Gen Student Data & Verification Hub
+          </h1>
+          <p class="lead text-secondary mb-4">
+            EduCloud streamlines enrollment workflows, profile maintenance, and secure document verification utilizing serverless workflows and scalable RDS cloud architecture.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="student-register.html" class="btn-premium py-3 px-4 rounded-pill">
+              Get Started Now <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+            <a href="#features" class="btn btn-outline-premium py-3 px-4 rounded-pill border-2">
+              Explore Portal
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 fade-in">
+          <div class="hero-img-placeholder">
+            <!-- Simulated Interface Graphics with CSS -->
+            <div class="d-flex align-items-center justify-content-between pb-3 border-bottom mb-3">
+              <div class="d-flex gap-2">
+                <span class="d-inline-block bg-danger rounded-circle" style="width:12px; height:12px;"></span>
+                <span class="d-inline-block bg-warning rounded-circle" style="width:12px; height:12px;"></span>
+                <span class="d-inline-block bg-success rounded-circle" style="width:12px; height:12px;"></span>
+              </div>
+              <span class="badge bg-primary rounded-pill px-3 py-1">educloud.aws.cloud</span>
+            </div>
+            
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="border rounded-4 p-3 bg-light-subtle">
+                  <div class="text-secondary small mb-1">Active Accounts</div>
+                  <div class="h3 fw-bold text-primary mb-0">1,248</div>
+                  <span class="text-success small fw-medium"><i class="fas fa-arrow-up-right me-1"></i>+12.4%</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border rounded-4 p-3 bg-light-subtle">
+                  <div class="text-secondary small mb-1">Verified Forms</div>
+                  <div class="h3 fw-bold text-success mb-0">98.2%</div>
+                  <span class="text-secondary small">Auto-Scale Active</span>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="border rounded-4 p-3 bg-light-subtle">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="fw-semibold">Enrollments Track</span>
+                    <span class="badge bg-secondary">Live Metrics</span>
+                  </div>
+                  <!-- Mini CSS graph mockup -->
+                  <div class="d-flex align-items-end gap-3 justify-content-between pt-3" style="height: 100px;">
+                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 40px;" title="Jan"></div>
+                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 60px;" title="Feb"></div>
+                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 50px;" title="Mar"></div>
+                    <div class="bg-primary w-100 rounded-top" style="height: 85px;" title="Apr"></div>
+                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 70px;" title="May"></div>
+                    <div class="bg-primary w-100 rounded-top" style="height: 100px;" title="Jun"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-5 border-top" style="background-color: var(--card-bg);">
+    <div class="container py-5">
+      <div class="text-center max-w-600 mx-auto mb-5">
+        <h2 class="fw-bold text-primary">High-Speed Digital Administration</h2>
+        <p class="text-secondary">Explore advanced capabilities integrated directly with identity access management systems.</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4 feature-box hover-scale">
+          <div class="custom-card h-100">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-file-shield"></i>
+            </div>
+            <h4 class="fw-semibold mb-2">Secure Verification</h4>
+            <p class="text-secondary mb-0">Drag and drop academic certificates, identity documents, and utility files. Encrypted storage verifies records without integrity leaks.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4 feature-box hover-scale">
+          <div class="custom-card h-100">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4 class="fw-semibold mb-2">Dynamic Dashboards</h4>
+            <p class="text-secondary mb-0">Track document status, view alerts, receive real-time notices from admins, and monitor grade progress through customized user interfaces.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4 feature-box hover-scale">
+          <div class="custom-card h-100">
+            <div class="feature-icon-wrapper">
+              <i class="fas fa-user-lock"></i>
+            </div>
+            <h4 class="fw-semibold mb-2">Role-Based Access</h4>
+            <p class="text-secondary mb-0">Decentralized pathways separating administrative evaluation dashboards from student file editing zones to prevent unverified overrides.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Architecture Section -->
+  <section id="about" class="py-5" style="background-color: var(--bg-color);">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h2 class="fw-bold text-primary mb-3">Enterprise Cloud-Scale Infrastructure</h2>
+          <p class="text-secondary">
+            Our system is architected for deployment in a secure Amazon Web Services (AWS) environment. By separating the layout from dynamic logic, the web interface coordinates requests asynchronously with a Flask API.
+          </p>
+          <div class="d-flex flex-column gap-3 mt-4">
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success p-2 rounded-circle mt-1"><i class="fas fa-check"></i></span>
+              <div>
+                <h6 class="fw-semibold mb-1">S3 Bucket Storage</h6>
+                <p class="text-secondary small mb-0">All uploaded documents are stored in secure Amazon S3 buckets using server-side AES-256 encryption keys.</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success p-2 rounded-circle mt-1"><i class="fas fa-check"></i></span>
+              <div>
+                <h6 class="fw-semibold mb-1">RDS Multi-AZ Database</h6>
+                <p class="text-secondary small mb-0">Student profiles and registration registries are persisted in Amazon RDS MySQL deployments for high availability.</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success p-2 rounded-circle mt-1"><i class="fas fa-check"></i></span>
+              <div>
+                <h6 class="fw-semibold mb-1">Auto-Scaling & Load Balancers</h6>
+                <p class="text-secondary small mb-0">Seamlessly scales server capacities via AWS Auto Scaling behind an Application Load Balancer to guarantee 99.9% uptime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="custom-card border-0 shadow-lg p-4">
+            <h5 class="fw-bold text-primary mb-3"><i class="fas fa-sitemap me-2"></i>Deployment Topology</h5>
+            <hr class="my-3 text-secondary opacity-25">
+            <!-- Simulated ASCII/Interactive AWS Infrastructure Diagram -->
+            <div class="p-3 bg-dark text-success rounded-3 font-monospace small">
+              <div>[Client Web Browser]</div>
+              <div class="ps-3 text-secondary">│ (HTTPS Request)</div>
+              <div>[AWS Route 53 (DNS)] ──> [Application Load Balancer]</div>
+              <div class="ps-5 text-secondary">│ (Distribute Traffic)</div>
+              <div>├──> [EC2 Auto-Scaling Group (Flask Backend)]</div>
+              <div class="ps-3">│       ├──> [AWS S3 (Document Buckets)]</div>
+              <div class="ps-3">│       └──> [Amazon RDS (MySQL DB)]</div>
+              <div class="ps-3">└──> [Amazon CloudWatch (Logs & Metrics)]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 border-top" style="background-color: var(--card-bg);">
+    <div class="container text-center">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <p class="mb-0 text-secondary small">&copy; 2026 EduCloud Inc. Built for portfolio presentation & cloud deployment.</p>
+        <div class="d-flex gap-3 text-secondary">
+          <a href="#" class="text-decoration-none text-secondary hover:text-primary"><i class="fab fa-github"></i></a>
+          <a href="#" class="text-decoration-none text-secondary hover:text-primary"><i class="fab fa-aws"></i></a>
+          <a href="#" class="text-decoration-none text-secondary hover:text-primary"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Global Application Code -->
+  <script src="js/app.js"></script>
+</body>
+</html>
