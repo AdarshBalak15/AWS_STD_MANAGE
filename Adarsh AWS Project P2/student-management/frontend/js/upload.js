@@ -212,8 +212,8 @@ async function loadDocumentsList() {
 
     if (myDocs.length === 0) {
       container.innerHTML = `
-        <div class="text-center py-5 text-secondary border rounded-3 p-4 bg-light-subtle">
-          <i class="fas fa-folder-open opacity-25 mb-3" style="font-size:3.5rem;"></i>
+        <div class="text-center py-5 text-secondary border rounded-3 p-4 bg-light-subtle" style="border-color: var(--border-color) !important;">
+          <i class="bi bi-folder2-open opacity-25 mb-3 d-block" style="font-size:3.5rem;"></i>
           <h6 class="fw-semibold">No Documents Uploaded</h6>
           <p class="small text-secondary mb-0">Use the uploader panel to submit certificates for AWS verification.</p>
         </div>
@@ -229,38 +229,38 @@ async function loadDocumentsList() {
       const deleteBtn = doc.status === 'Approved'
         ? ''
         : `<button class="btn btn-outline-danger btn-sm rounded-pill px-3" onclick="deleteDocument('${doc.id}')">
-            <i class="fas fa-trash me-1"></i>Delete
+            <i class="bi bi-trash-fill me-1"></i>Delete
            </button>`;
 
       return `
-        <div class="card border rounded-4 p-3 bg-light-subtle mb-3" style="transition:all 0.3s;">
+        <div class="glass-card hover-lift p-3 mb-3">
           <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
             
             <div class="d-flex gap-3 align-items-center">
               <div class="bg-primary-subtle text-primary rounded-3 d-flex align-items-center justify-content-center" style="width:48px; height:48px; font-size:1.5rem; flex-shrink:0;">
-                <i class="far fa-file-pdf"></i>
+                <i class="bi bi-file-earmark-pdf-fill"></i>
               </div>
               
               <div style="min-width:0;">
                 <h6 class="fw-bold mb-1 text-truncate text-primary" style="font-size:0.95rem;" title="${escapeHTML(doc.fileName)}">
                   ${escapeHTML(doc.fileName)}
                 </h6>
-                <div class="text-secondary small">
+                <div class="text-secondary small" style="font-size: 0.75rem;">
                   <span>ID: <strong>${doc.id}</strong></span>
                 </div>
               </div>
             </div>
 
             <span class="badge-custom ${badgeClass} align-self-start">
-              <i class="fas ${doc.status === 'Approved' ? 'fa-check' : doc.status === 'Rejected' ? 'fa-times' : 'fa-clock'}"></i>
-              ${doc.status}
+              <i class="bi ${doc.status === 'Approved' ? 'bi-check-circle-fill' : doc.status === 'Rejected' ? 'bi-x-circle-fill' : 'bi-hourglass-split'}"></i>
+              <span>${doc.status}</span>
             </span>
 
           </div>
 
-          <div class="d-flex justify-content-end gap-2 mt-3 pt-2 border-top">
+          <div class="d-flex justify-content-end gap-2 mt-3 pt-2 border-top" style="border-color: var(--border-color) !important;">
             <button class="btn btn-light btn-sm rounded-pill px-3" onclick="previewDocument('${doc.id}', '${doc.file_path}')">
-              <i class="fas fa-eye me-1"></i>Preview
+              <i class="bi bi-eye-fill me-1"></i>Preview
             </button>
             ${deleteBtn}
           </div>
@@ -287,10 +287,10 @@ window.previewDocument = function(id, fileUrl) {
   } else {
     renderArea.innerHTML = `
       <div class="text-white text-center py-5">
-        <i class="far fa-file-pdf text-warning mb-3" style="font-size:4rem;"></i>
+        <i class="bi bi-filetype-pdf text-warning mb-3" style="font-size:4rem;"></i>
         <h5>${id}</h5>
         <a href="${fileUrl}" target="_blank" class="btn btn-premium rounded-pill px-4 mt-2">
-          <i class="fas fa-download me-1"></i>Download & View
+          <i class="bi bi-download-button-fill me-1"></i>Download & View
         </a>
       </div>
     `;

@@ -5,10 +5,15 @@ Simplified AWS Student Management System Frontend
 ==================================================
 */
 
+// Set theme immediately to avoid layout flash
+const savedTheme = localStorage.getItem('sms_theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
 const API_BASE = '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Global UI Components
+  initThemeToggle();
   initRipples();
   initSidebarToggle();
   initLogoutConfirmations();
@@ -283,3 +288,41 @@ function buildBreadcrumbs(items = []) {
   html += `</ol></nav>`;
   container.innerHTML = html;
 }
+
+// ==================================================
+// PERSISTENT THEME SWITCHER (DARK / LIGHT)
+// ==================================================
+function initThemeToggle() {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  // Sync toggle button icon
+  updateThemeToggleIcon(localStorage.getItem('sms_theme') || 'light');
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('sms_theme', newTheme);
+      
+      updateThemeToggleIcon(newTheme);
+      showToast('Theme Changed', `Switched to ${newTheme} mode.`, 'info');
+    });
+  }
+}
+
+function updateThemeToggleIcon(theme) {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  if (!themeToggleBtn) return;
+  
+  const icon = themeToggleBtn.querySelector('i');
+  if (icon) {
+    if (theme === 'dark') {
+      icon.className = 'fas fa-sun text-warning';
+    } else {
+      icon.className = 'fas fa-moon text-secondary';
+    }
+  }
+}
+

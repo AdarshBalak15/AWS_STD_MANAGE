@@ -7,297 +7,596 @@
   <title>EduCloud - Cloud-Based Student Management System</title>
   
   <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
   <!-- Global Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
-  
-  <style>
-    /* Unique Home Page Styles */
-    .hero-section {
-      padding: 120px 0 80px;
-      position: relative;
-      overflow: hidden;
-      background: radial-gradient(circle at 100% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
-    }
-    
-    .hero-img-placeholder {
-      border-radius: 20px;
-      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.12), 0 15px 30px -10px rgba(37,99,235,0.1);
-      border: 1px solid var(--border-color);
-      background-color: var(--card-bg);
-      padding: 15px;
-      position: relative;
-    }
-
-    .feature-icon-wrapper {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      background-color: rgba(37, 99, 235, 0.1);
-      color: var(--primary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.25rem;
-      transition: all var(--transition-speed);
-    }
-
-    .feature-box:hover .feature-icon-wrapper {
-      background-color: var(--primary-color);
-      color: #FFFFFF;
-      transform: scale(1.1);
-    }
-
-    .nav-link {
-      color: var(--text-secondary);
-      font-weight: 500;
-      transition: color var(--transition-speed);
-    }
-    .nav-link:hover, .nav-link.active {
-      color: var(--primary-color);
-    }
-
-    .cloud-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background-color: rgba(37, 99, 235, 0.08);
-      color: var(--primary-color);
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg fixed-top border-bottom" style="background-color: rgba(var(--card-bg), 0.8); backdrop-filter: blur(10px); z-index: 1030; border-color: var(--border-color) !important;">
+  <!-- Sticky Glass Navigation Bar -->
+  <nav class="navbar navbar-expand-lg fixed-top nav-glass" style="z-index: 1030;">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 text-primary font-weight-bold" href="index.html" style="font-weight: 700; font-size: 1.4rem;">
-        <i class="fas fa-graduation-cap"></i>
-        <span>EduCloud</span>
+      <a class="navbar-brand d-flex align-items-center gap-2 text-primary" href="index.html" style="font-weight: 900; font-size: 1.55rem; letter-spacing: -0.75px;">
+        <div class="logo-icon-wrapper float-anim" style="animation-duration: 4s;">
+          <i class="bi bi-clouds-fill fs-3 text-primary"></i>
+        </div>
+        <span style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EduCloud</span>
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-secondary"></i>
+        <i class="bi bi-list fs-3 text-secondary"></i>
       </button>
       
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+            <a class="nav-link nav-link-custom active" aria-current="page" href="#hero">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#features">Features</a>
+            <a class="nav-link nav-link-custom" href="#features">Features</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#about">About Architecture</a>
+            <a class="nav-link nav-link-custom" href="#aws-services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#about">AWS Architecture</a>
           </li>
         </ul>
         
         <div class="d-flex align-items-center gap-3">
-          <!-- Dark Mode Toggle -->
+          <!-- Dark/Light Theme switch button -->
           <button id="theme-toggle" class="btn btn-link text-decoration-none text-secondary p-2" aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
+            <i class="bi bi-moon-stars-fill"></i>
           </button>
           
           <!-- Dropdown Login Options -->
           <div class="dropdown">
-            <button class="btn btn-outline-premium dropdown-toggle" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-sign-in-alt me-1"></i>Login
+            <button class="btn btn-outline-premium dropdown-toggle rounded-pill" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Login
             </button>
-            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2 p-2" aria-labelledby="loginDropdown" style="border-radius:12px; min-width:180px;">
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2 p-2" aria-labelledby="loginDropdown" style="border-radius:var(--radius-sm); min-width:190px; background-color: var(--card-bg);">
               <li>
-                <a class="dropdown-item rounded-3 py-2 px-3 text-secondary" href="student-login.html">
-                  <i class="fas fa-user-graduate me-2 text-primary"></i>Student Login
+                <a class="dropdown-item rounded-3 py-2 px-3 text-secondary d-flex align-items-center gap-2" href="student-login.html">
+                  <i class="bi bi-mortarboard-fill text-primary"></i>
+                  <span>Student Login</span>
                 </a>
               </li>
               <li>
-                <a class="dropdown-item rounded-3 py-2 px-3 text-secondary" href="admin-login.html">
-                  <i class="fas fa-user-shield me-2 text-danger"></i>Admin Portal
+                <a class="dropdown-item rounded-3 py-2 px-3 text-secondary d-flex align-items-center gap-2" href="admin-login.html">
+                  <i class="bi bi-shield-lock-fill text-danger"></i>
+                  <span>Admin Portal</span>
                 </a>
               </li>
             </ul>
           </div>
           
-          <a href="student-register.html" class="btn-premium">
-            <i class="fas fa-user-plus me-1"></i>Register
+          <a href="student-register.html" class="btn-premium rounded-pill text-nowrap">
+            <i class="bi bi-person-plus-fill me-1"></i>Register
           </a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Full Screen Hero Section -->
   <section id="hero" class="hero-section">
-    <div class="container mt-5">
+    <!-- Parallax Glowing spots -->
+    <div class="glow-spot" style="top: 15%; right: -5%; width: 500px; height: 500px;"></div>
+    <div class="glow-spot-accent" style="top: 45%; left: -8%; width: 450px; height: 450px;"></div>
+
+    <!-- Animated float clouds -->
+    <div class="floating-cloud-vector float-anim" style="top: 15%; left: 6%;">
+      <i class="bi bi-cloud-arrow-up-fill text-primary" style="font-size: 7rem; opacity: 0.08;"></i>
+    </div>
+    <div class="floating-cloud-vector float-anim-reverse" style="top: 55%; right: 8%; animation-duration: 9s;">
+      <i class="bi bi-cloud-check-fill text-info" style="font-size: 8rem; opacity: 0.08;"></i>
+    </div>
+
+    <div class="container relative-content">
       <div class="row align-items-center g-5">
-        <div class="col-lg-6 slide-up">
-          <div class="cloud-badge">
-            <i class="fab fa-aws"></i> AWS Cloud Integrated System
+        
+        <!-- Hero Left Column -->
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="cloud-badge-premium">
+            <i class="bi bi-cpu-fill text-warning"></i> AWS Cloud Integrated SaaS
           </div>
-          <h1 class="display-4 fw-bold lh-sm text-primary mb-3">
-            Next-Gen Student Data & Verification Hub
+          <h1 class="display-4 fw-bold lh-sm text-primary mb-3" style="letter-spacing: -2px; background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Cloud-Based Student Management
           </h1>
-          <p class="lead text-secondary mb-4">
-            EduCloud streamlines enrollment workflows, profile maintenance, and secure document verification utilizing serverless workflows and scalable RDS cloud architecture.
+          <p class="lead text-secondary mb-4" style="font-weight: 500; font-size: 1.1rem; line-height: 1.6;">
+            Redefining student onboarding, file uploads, and registrar audits. Fully automated verification built on top of secure Amazon Web Services (S3, RDS, CloudWatch) server structures.
           </p>
-          <div class="d-flex flex-wrap gap-3">
+          
+          <div class="d-flex flex-wrap gap-3 mb-5">
             <a href="student-register.html" class="btn-premium py-3 px-4 rounded-pill">
-              Get Started Now <i class="fas fa-arrow-right ms-2"></i>
+              Get Started <i class="bi bi-arrow-right-short ms-1 fs-5 align-middle"></i>
             </a>
-            <a href="#features" class="btn btn-outline-premium py-3 px-4 rounded-pill border-2">
-              Explore Portal
+            <a href="#about" class="btn btn-outline-premium py-3 px-4 rounded-pill border-2">
+              <i class="bi bi-diagram-3-fill me-1"></i> Cloud Architecture
             </a>
+          </div>
+          
+          <!-- Statistics 2x2 Premium Grid -->
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="premium-stat-card">
+                <div class="stat-card-icon primary">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                  <h3 class="fw-bold text-primary mb-0 count-num" data-target="1240">0</h3>
+                  <span class="text-secondary small fw-semibold">Active Students</span>
+                </div>
+                <span class="stat-card-trend up"><i class="bi bi-arrow-up me-1"></i>12%</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="premium-stat-card">
+                <div class="stat-card-icon success">
+                  <i class="bi bi-file-earmark-pdf-fill"></i>
+                </div>
+                <div>
+                  <h3 class="fw-bold text-primary mb-0 count-num" data-target="3480">0</h3>
+                  <span class="text-secondary small fw-semibold">Documents Stored</span>
+                </div>
+                <span class="stat-card-trend live"><i class="bi bi-check-circle-fill me-1"></i>S3</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="premium-stat-card">
+                <div class="stat-card-icon info">
+                  <i class="bi bi-speedometer2"></i>
+                </div>
+                <div>
+                  <h3 class="fw-bold text-primary mb-0 count-num" data-target="99">0</h3>
+                  <span class="text-secondary small fw-semibold">Uptime Percentage</span>
+                </div>
+                <span class="stat-card-trend live"><i class="bi bi-activity me-1"></i>Live</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="premium-stat-card">
+                <div class="stat-card-icon warning">
+                  <i class="bi bi-clouds-fill"></i>
+                </div>
+                <div>
+                  <h3 class="fw-bold text-primary mb-0 count-num" data-target="9">0</h3>
+                  <span class="text-secondary small fw-semibold">AWS Services</span>
+                </div>
+                <span class="stat-card-trend up"><i class="bi bi-cpu-fill me-1"></i>EC2</span>
+              </div>
+            </div>
           </div>
         </div>
         
-        <div class="col-lg-6 fade-in">
-          <div class="hero-img-placeholder">
-            <!-- Simulated Interface Graphics with CSS -->
-            <div class="d-flex align-items-center justify-content-between pb-3 border-bottom mb-3">
+        <!-- Hero Right Column (SaaS Dashboard Mockup) -->
+        <div class="col-lg-6" data-aos="zoom-in">
+          <div class="dashboard-mockup glass-card glow-border p-0 overflow-hidden">
+            <!-- Address/Control Bar -->
+            <div class="d-flex align-items-center justify-content-between p-3 border-bottom" style="border-color: var(--border-color) !important; background-color: rgba(0,0,0,0.02);">
               <div class="d-flex gap-2">
-                <span class="d-inline-block bg-danger rounded-circle" style="width:12px; height:12px;"></span>
-                <span class="d-inline-block bg-warning rounded-circle" style="width:12px; height:12px;"></span>
-                <span class="d-inline-block bg-success rounded-circle" style="width:12px; height:12px;"></span>
+                <span class="d-inline-block bg-danger rounded-circle" style="width:10px; height:10px;"></span>
+                <span class="d-inline-block bg-warning rounded-circle" style="width:10px; height:10px;"></span>
+                <span class="d-inline-block bg-success rounded-circle" style="width:10px; height:10px;"></span>
               </div>
-              <span class="badge bg-primary rounded-pill px-3 py-1">educloud.aws.cloud</span>
+              <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 fw-bold" style="font-size:0.75rem;">educloud.aws.cloud</span>
+              <div style="width: 38px;"></div>
             </div>
             
-            <div class="row g-3">
-              <div class="col-6">
-                <div class="border rounded-4 p-3 bg-light-subtle">
-                  <div class="text-secondary small mb-1">Active Accounts</div>
-                  <div class="h3 fw-bold text-primary mb-0">1,248</div>
-                  <span class="text-success small fw-medium"><i class="fas fa-arrow-up-right me-1"></i>+12.4%</span>
+            <!-- Dashboard Mockup Content -->
+            <div class="p-4">
+              <div class="row g-3 mb-4">
+                <div class="col-6">
+                  <div class="border rounded-4 p-3 bg-light-subtle" style="border-color: var(--border-color) !important; background-color: rgba(255,255,255,0.02);">
+                    <span class="text-secondary small mb-1 d-block">Active Connections</span>
+                    <h4 class="fw-bold text-primary mb-0">1,248</h4>
+                    <span class="stat-badge-glowing mt-2 d-inline-block"><i class="bi bi-graph-up-arrow me-1"></i>+12.4% rate</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="border rounded-4 p-3 bg-light-subtle" style="border-color: var(--border-color) !important; background-color: rgba(255,255,255,0.02);">
+                    <span class="text-secondary small mb-1 d-block">Upload Sync Rate</span>
+                    <h4 class="fw-bold text-success mb-0">98.2%</h4>
+                    <span class="text-secondary small d-block mt-2"><i class="bi bi-cloud-check-fill text-success me-1"></i>S3 Live Vault</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="border rounded-4 p-3 bg-light-subtle">
-                  <div class="text-secondary small mb-1">Verified Forms</div>
-                  <div class="h3 fw-bold text-success mb-0">98.2%</div>
-                  <span class="text-secondary small">Auto-Scale Active</span>
+
+              <!-- Storage Usage Indicator -->
+              <div class="border rounded-4 p-3 mb-4 bg-light-subtle" style="border-color: var(--border-color) !important;">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold text-primary small">Amazon S3 Storage Load</span>
+                  <span class="text-secondary small">2.4 TB / 10 TB</span>
+                </div>
+                <div class="progress" style="height: 8px; border-radius: 4px;">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 24%;" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
-              <div class="col-12">
-                <div class="border rounded-4 p-3 bg-light-subtle">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="fw-semibold">Enrollments Track</span>
-                    <span class="badge bg-secondary">Live Metrics</span>
-                  </div>
-                  <!-- Mini CSS graph mockup -->
-                  <div class="d-flex align-items-end gap-3 justify-content-between pt-3" style="height: 100px;">
-                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 40px;" title="Jan"></div>
-                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 60px;" title="Feb"></div>
-                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 50px;" title="Mar"></div>
-                    <div class="bg-primary w-100 rounded-top" style="height: 85px;" title="Apr"></div>
-                    <div class="bg-primary-subtle w-100 rounded-top" style="height: 70px;" title="May"></div>
-                    <div class="bg-primary w-100 rounded-top" style="height: 100px;" title="Jun"></div>
-                  </div>
+              
+              <!-- Mock Terminal Logger -->
+              <div class="border rounded-4 p-3 bg-light-subtle" style="border-color: var(--border-color) !important; background-color: rgba(0,0,0,0.03);">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fw-bold text-primary small"><i class="bi bi-terminal-fill me-1"></i>CloudWatch Live Logging</span>
+                  <span class="badge bg-secondary-subtle text-secondary small" style="font-size:0.65rem;">Stream Active</span>
+                </div>
+                <div class="font-monospace text-secondary" style="font-size: 0.72rem; line-height: 1.5; text-align: left; height: 95px; overflow-y: hidden;">
+                  <div class="text-success">[LOG 22:38] Uploaded student_transcript_4012.pdf by Student ID 1042</div>
+                  <div class="text-success">[LOG 22:38] S3 bucket checksum verified. Triggering SNS event handler.</div>
+                  <div class="text-info">[AWS 22:39] Route 53 resolved DNS check for Load Balancer.</div>
+                  <div class="text-warning">[LOG 22:39] Admin Console completed security key token rotation check.</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
+
+    <!-- Mouse scrolling indicator -->
+    <a href="#features" class="scroll-indicator">
+      <span class="small fw-bold">Explore Platform</span>
+      <div class="scroll-indicator-mouse">
+        <div class="scroll-indicator-wheel"></div>
+      </div>
+    </a>
   </section>
 
-  <!-- Features Section -->
-  <section id="features" class="py-5 border-top" style="background-color: var(--card-bg);">
+  <!-- Features Cards Section -->
+  <section id="features" class="py-5 border-top" style="background-color: var(--card-bg); border-color: var(--border-color) !important;">
     <div class="container py-5">
-      <div class="text-center max-w-600 mx-auto mb-5">
-        <h2 class="fw-bold text-primary">High-Speed Digital Administration</h2>
-        <p class="text-secondary">Explore advanced capabilities integrated directly with identity access management systems.</p>
+      <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+        <h2 class="fw-bold text-primary h1" style="letter-spacing: -1.25px;">Engineered For Performance</h2>
+        <p class="text-secondary mt-2">EduCloud leverages specialized visual dashboards and secure file storage frameworks.</p>
       </div>
       
-      <div class="row g-4">
-        <div class="col-md-4 feature-box hover-scale">
-          <div class="custom-card h-100">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-file-shield"></i>
+      <div class="premium-grid-3">
+        
+        <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon primary mb-4">
+              <i class="bi bi-shield-lock-fill"></i>
             </div>
-            <h4 class="fw-semibold mb-2">Secure Verification</h4>
-            <p class="text-secondary mb-0">Drag and drop academic certificates, identity documents, and utility files. Encrypted storage verifies records without integrity leaks.</p>
+            <h4 class="fw-bold mb-2 text-primary" style="font-size: 1.25rem;">Secure Encryption</h4>
+            <p class="text-secondary mb-0 small" style="line-height: 1.6;">Drag &amp; drop document transcripts are automatically uploaded directly to Amazon S3 buckets utilizing server-side AES-256 keys.</p>
           </div>
         </div>
         
-        <div class="col-md-4 feature-box hover-scale">
-          <div class="custom-card h-100">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-chart-line"></i>
+        <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon info mb-4">
+              <i class="bi bi-speedometer2"></i>
             </div>
-            <h4 class="fw-semibold mb-2">Dynamic Dashboards</h4>
-            <p class="text-secondary mb-0">Track document status, view alerts, receive real-time notices from admins, and monitor grade progress through customized user interfaces.</p>
+            <h4 class="fw-bold mb-2 text-primary" style="font-size: 1.25rem;">SaaS Analytics Console</h4>
+            <p class="text-secondary mb-0 small" style="line-height: 1.6;">Dynamically monitor metrics ratios using integrated Chart.js visual canvas lines, bars, and doughnut statistics.</p>
           </div>
         </div>
         
-        <div class="col-md-4 feature-box hover-scale">
-          <div class="custom-card h-100">
-            <div class="feature-icon-wrapper">
-              <i class="fas fa-user-lock"></i>
+        <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon warning mb-4">
+              <i class="bi bi-fingerprint"></i>
             </div>
-            <h4 class="fw-semibold mb-2">Role-Based Access</h4>
-            <p class="text-secondary mb-0">Decentralized pathways separating administrative evaluation dashboards from student file editing zones to prevent unverified overrides.</p>
+            <h4 class="fw-bold mb-2 text-primary" style="font-size: 1.25rem;">Compliance Audits</h4>
+            <p class="text-secondary mb-0 small" style="line-height: 1.6;">Strict access control protocols partition registrar evaluation panels from student document editing views to guarantee data integrity.</p>
           </div>
         </div>
+        
       </div>
     </div>
   </section>
 
-  <!-- About Architecture Section -->
-  <section id="about" class="py-5" style="background-color: var(--bg-color);">
+  <!-- AWS Services Details Section -->
+  <section id="aws-services" class="py-5" style="background-color: var(--bg-color);">
+    <div class="container py-5">
+      <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+        <h2 class="fw-bold text-primary h1" style="letter-spacing: -1.25px;">Amazon Web Services Stack</h2>
+        <p class="text-secondary mt-2">EduCloud is deeply integrated into AWS core architectures to guarantee speed, high availability, and horizontal scalability.</p>
+      </div>
+
+      <div class="aws-service-grid">
+        
+        <div data-aos="fade-up" data-aos-delay="100">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#FF9900; background: rgba(255, 153, 0, 0.08);"><i class="bi bi-cpu-fill"></i></div>
+            <h5 class="fw-bold mb-2">Amazon EC2</h5>
+            <p class="text-secondary small mb-0">Compute platform hosting gunicorn configurations dynamically served behind Load Balancers.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="150">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#FF9900; background: rgba(255, 153, 0, 0.08);"><i class="bi bi-database-fill"></i></div>
+            <h5 class="fw-bold mb-2">Amazon RDS</h5>
+            <p class="text-secondary small mb-0">Multi-AZ MySQL relational engine ensuring high-availability persistence of active student records.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="200">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#527FFF; background: rgba(82, 127, 255, 0.08);"><i class="bi bi-cloud-fill"></i></div>
+            <h5 class="fw-bold mb-2">Amazon S3</h5>
+            <p class="text-secondary small mb-0">Secure Object buckets engineered to safeguard official transcript PDFs with version control limits.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="250">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#E05243; background: rgba(224, 82, 67, 0.08);"><i class="bi bi-shield-lock-fill"></i></div>
+            <h5 class="fw-bold mb-2">Amazon IAM</h5>
+            <p class="text-secondary small mb-0">Identity & Access management protocols partitioning credentials and restricting resource accesses.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#FF4F8B; background: rgba(255, 79, 139, 0.08);"><i class="bi bi-bell-fill"></i></div>
+            <h5 class="fw-bold mb-2">Amazon SNS</h5>
+            <p class="text-secondary small mb-0">Pub/Sub event notification system launching immediate alerts on student upload triggers.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="350">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#01A4EF; background: rgba(1, 164, 239, 0.08);"><i class="bi bi-eye-fill"></i></div>
+            <h5 class="fw-bold mb-2">CloudWatch</h5>
+            <p class="text-secondary small mb-0">Realtime monitor metrics auditing system transactions, server loads, and active processes.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="400">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#2E962D; background: rgba(46, 150, 45, 0.08);"><i class="bi bi-shuffle"></i></div>
+            <h5 class="fw-bold mb-2">Load Balancer</h5>
+            <p class="text-secondary small mb-0">Elastic Load Balancer routing incoming traffic flows across active redundantly pooled nodes.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="450">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#4B1578; background: rgba(75, 21, 120, 0.08);"><i class="bi bi-globe2"></i></div>
+            <h5 class="fw-bold mb-2">Route 53</h5>
+            <p class="text-secondary small mb-0">Global latency DNS router ensuring immediate, secure packet resolution pathways.</p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="500">
+          <div class="premium-feature-card">
+            <div class="stat-card-icon mb-3" style="color:#D82E3F; background: rgba(216, 46, 63, 0.08);"><i class="bi bi-arrows-expand"></i></div>
+            <h5 class="fw-bold mb-2">Auto Scaling</h5>
+            <p class="text-secondary small mb-0">Automatic capacity scaling system adding clone nodes dynamically on CPU spike triggers.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Architecture Section (AWS Topology Flowchart Diagram) -->
+  <section id="about" class="py-5" style="background-color: var(--card-bg);">
     <div class="container py-5">
       <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <h2 class="fw-bold text-primary mb-3">Enterprise Cloud-Scale Infrastructure</h2>
-          <p class="text-secondary">
-            Our system is architected for deployment in a secure Amazon Web Services (AWS) environment. By separating the layout from dynamic logic, the web interface coordinates requests asynchronously with a Flask API.
+        
+        <!-- AWS Descriptions (Left Side) -->
+        <div class="col-lg-5" data-aos="fade-right">
+          <h2 class="fw-bold text-primary h1 mb-3" style="letter-spacing: -1px;">Enterprise Topology Diagram</h2>
+          <p class="text-secondary mb-4">
+            EduCloud isolates visual assets in a static frontend while delegating REST computations dynamically to a back-end Flask container. Review the topology architecture below:
           </p>
-          <div class="d-flex flex-column gap-3 mt-4">
+          <div class="d-flex flex-column gap-4 mt-4">
             <div class="d-flex align-items-start gap-3">
-              <span class="badge bg-success p-2 rounded-circle mt-1"><i class="fas fa-check"></i></span>
+              <div class="bg-success text-white rounded-circle p-1 d-flex align-items-center justify-content-center" style="width:28px; height:28px; flex-shrink:0;">
+                <i class="bi bi-check-lg fw-bold"></i>
+              </div>
               <div>
-                <h6 class="fw-semibold mb-1">S3 Bucket Storage</h6>
-                <p class="text-secondary small mb-0">All uploaded documents are stored in secure Amazon S3 buckets using server-side AES-256 encryption keys.</p>
+                <h6 class="fw-bold mb-1 text-primary">High Availability Routing</h6>
+                <p class="text-secondary small mb-0">Amazon Route 53 routes incoming DNS queries. Application Load Balancers split requests between redundant EC2 Flask nodes.</p>
               </div>
             </div>
             <div class="d-flex align-items-start gap-3">
-              <span class="badge bg-success p-2 rounded-circle mt-1"><i class="fas fa-check"></i></span>
-              <div>
-                <h6 class="fw-semibold mb-1">RDS Multi-AZ Database</h6>
-                <p class="text-secondary small mb-0">Student profiles and registration registries are persisted in Amazon RDS MySQL deployments for high availability.</p>
+              <div class="bg-success text-white rounded-circle p-1 d-flex align-items-center justify-content-center" style="width:28px; height:28px; flex-shrink:0;">
+                <i class="bi bi-check-lg fw-bold"></i>
               </div>
-            </div>
-            <div class="d-flex align-items-start gap-3">
-              <span class="badge bg-success p-2 rounded-circle mt-1"><i class="fas fa-check"></i></span>
               <div>
-                <h6 class="fw-semibold mb-1">Auto-Scaling & Load Balancers</h6>
-                <p class="text-secondary small mb-0">Seamlessly scales server capacities via AWS Auto Scaling behind an Application Load Balancer to guarantee 99.9% uptime.</p>
+                <h6 class="fw-bold mb-1 text-primary">AWS Auto-Scaling Controls</h6>
+                <p class="text-secondary small mb-0">Monitors average requests, launching EC2 server clones on demand during traffic surges.</p>
               </div>
             </div>
           </div>
         </div>
         
-        <div class="col-lg-6">
-          <div class="custom-card border-0 shadow-lg p-4">
-            <h5 class="fw-bold text-primary mb-3"><i class="fas fa-sitemap me-2"></i>Deployment Topology</h5>
-            <hr class="my-3 text-secondary opacity-25">
-            <!-- Simulated ASCII/Interactive AWS Infrastructure Diagram -->
-            <div class="p-3 bg-dark text-success rounded-3 font-monospace small">
-              <div>[Client Web Browser]</div>
-              <div class="ps-3 text-secondary">│ (HTTPS Request)</div>
-              <div>[AWS Route 53 (DNS)] ──> [Application Load Balancer]</div>
-              <div class="ps-5 text-secondary">│ (Distribute Traffic)</div>
-              <div>├──> [EC2 Auto-Scaling Group (Flask Backend)]</div>
-              <div class="ps-3">│       ├──> [AWS S3 (Document Buckets)]</div>
-              <div class="ps-3">│       └──> [Amazon RDS (MySQL DB)]</div>
-              <div class="ps-3">└──> [Amazon CloudWatch (Logs & Metrics)]</div>
+        <!-- AWS Visual Infrastructure Diagram (Right Side) -->
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="glass-card glow-border p-4 h-100">
+            <h5 class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+              <i class="bi bi-diagram-3-fill text-warning"></i>
+              <span>Deployment Topology</span>
+            </h5>
+            <p class="text-secondary small mb-4">Traffic flow from user requests through Route 53, load balancing, EC2 Flask nodes down to S3 buckets, RDS systems, and CloudWatch metrics monitoring.</p>
+            
+            <div class="aws-flow-container">
+              <svg class="aws-flow-svg d-none d-md-block" viewBox="0 0 500 480">
+                <!-- Connectors SVG -->
+                <path d="M 250,55 L 250,90" stroke="#CBD5E1" stroke-width="2" fill="none" />
+                <path d="M 250,55 L 250,90" stroke="#6366F1" stroke-width="2" class="animated-arrow-path" fill="none" />
+                
+                <path d="M 250,140 L 250,180" stroke="#CBD5E1" stroke-width="2" fill="none" />
+                <path d="M 250,140 L 250,180" stroke="#6366F1" stroke-width="2" class="animated-arrow-path" fill="none" />
+
+                <path d="M 250,230 L 250,270" stroke="#CBD5E1" stroke-width="2" fill="none" />
+                <path d="M 250,230 L 250,270" stroke="#6366F1" stroke-width="2" class="animated-arrow-path" fill="none" />
+
+                <path d="M 250,320 L 100,320 L 100,370" fill="none" stroke="#CBD5E1" stroke-width="2" />
+                <path d="M 250,320 L 100,320 L 100,370" fill="none" stroke="#6366F1" stroke-width="2" class="animated-arrow-path" />
+                
+                <path d="M 250,320 L 250,370" stroke="#CBD5E1" stroke-width="2" fill="none" />
+                <path d="M 250,320 L 250,370" stroke="#6366F1" stroke-width="2" class="animated-arrow-path" fill="none" />
+
+                <path d="M 250,320 L 400,320 L 400,370" fill="none" stroke="#CBD5E1" stroke-width="2" />
+                <path d="M 250,320 L 400,320 L 400,370" fill="none" stroke="#6366F1" stroke-width="2" class="animated-arrow-path" />
+              </svg>
+              
+              <div class="row flex-column align-items-center gap-3">
+                <div class="col-8 col-sm-6">
+                  <div class="aws-node">
+                    <div class="aws-node-icon"><i class="bi bi-laptop"></i></div>
+                    <div class="aws-node-title">Internet Requests</div>
+                    <p class="aws-node-desc">Client Web Browser</p>
+                  </div>
+                </div>
+
+                <div class="col-8 col-sm-6 mt-4">
+                  <div class="aws-node">
+                    <div class="aws-node-icon"><i class="bi bi-globe2"></i></div>
+                    <div class="aws-node-title">Route 53</div>
+                    <p class="aws-node-desc">Highly available DNS Routing</p>
+                  </div>
+                </div>
+
+                <div class="col-8 col-sm-6 mt-4">
+                  <div class="aws-node">
+                    <div class="aws-node-icon"><i class="bi bi-shuffle"></i></div>
+                    <div class="aws-node-title">Elastic Load Balancer</div>
+                    <p class="aws-node-desc">Application Traffic Distributor</p>
+                  </div>
+                </div>
+
+                <div class="col-8 col-sm-6 mt-4">
+                  <div class="aws-node">
+                    <div class="aws-node-icon"><i class="bi bi-server"></i></div>
+                    <div class="aws-node-title">EC2 Flask Nodes</div>
+                    <p class="aws-node-desc">Backend application scaling</p>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                  <div class="row g-3">
+                    <div class="col-4">
+                      <div class="aws-node h-100 p-2">
+                        <div class="aws-node-icon" style="width:40px; height:40px; font-size:1.25rem; color:#FF9900;"><i class="bi bi-database-fill"></i></div>
+                        <div class="aws-node-title" style="font-size:0.8rem;">Amazon RDS</div>
+                        <p class="aws-node-desc" style="font-size:0.65rem;">MySQL Database</p>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="aws-node h-100 p-2">
+                        <div class="aws-node-icon" style="width:40px; height:40px; font-size:1.25rem; color:#527FFF;"><i class="bi bi-cloud-fill"></i></div>
+                        <div class="aws-node-title" style="font-size:0.8rem;">Amazon S3</div>
+                        <p class="aws-node-desc" style="font-size:0.65rem;">PDF Store</p>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="aws-node h-100 p-2">
+                        <div class="aws-node-icon" style="width:40px; height:40px; font-size:1.25rem; color:#01A4EF;"><i class="bi bi-eye-fill"></i></div>
+                        <div class="aws-node-title" style="font-size:0.8rem;">CloudWatch</div>
+                        <p class="aws-node-desc" style="font-size:0.65rem;">Log Audits</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Journey Horizontal Timeline Section -->
+  <section class="py-5" style="background-color: var(--bg-color);">
+    <div class="container py-5">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="fw-bold text-primary h1">Student Transcript Journey</h2>
+        <p class="text-secondary">Understanding document tracking audits and registrar evaluations.</p>
+      </div>
+
+      <div class="horizontal-timeline" data-aos="fade-up">
+        
+        <div class="timeline-step-horizontal">
+          <div class="timeline-badge-horizontal">1</div>
+          <h5 class="timeline-title-horizontal">Student Enrolls</h5>
+          <p class="timeline-desc-horizontal text-secondary">The student completes the registry profile setup and onboarding steps.</p>
+        </div>
+
+        <div class="timeline-step-horizontal">
+          <div class="timeline-badge-horizontal">2</div>
+          <h5 class="timeline-title-horizontal">Transcript Upload</h5>
+          <p class="timeline-desc-horizontal text-secondary">Academic PDF certificates are uploaded, writing records to secure S3 vaults.</p>
+        </div>
+
+        <div class="timeline-step-horizontal">
+          <div class="timeline-badge-horizontal">3</div>
+          <h5 class="timeline-title-horizontal">SNS Dispatch</h5>
+          <p class="timeline-desc-horizontal text-secondary">AWS SNS triggers event notification emails alerting active registrars.</p>
+        </div>
+
+        <div class="timeline-step-horizontal">
+          <div class="timeline-badge-horizontal">4</div>
+          <h5 class="timeline-title-horizontal">Compliance Audit</h5>
+          <p class="timeline-desc-horizontal text-secondary">Administrators evaluate submitted credentials, marking validation checks.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SaaS Testimonials Section -->
+  <section class="py-5" style="background-color: var(--card-bg); border-top: 1px solid var(--border-color);">
+    <div class="container py-5">
+      <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+        <h2 class="fw-bold text-primary h1">Trusted By Registrars</h2>
+        <p class="text-secondary mt-2">See how universities audit credentials using EduCloud's SaaS visual dashboard pipeline.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="premium-testimonial-card">
+            <div class="testimonial-bubble">
+              "EduCloud redesigned our document review backlog. Transcript storage uploads to Amazon S3 complete instantly, and our compliance logs are fully transparent via SNS."
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <div class="d-flex align-items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Sarah+Jenkins&background=6366F1&color=fff" alt="User Ava" class="rounded-circle" style="width:48px; height:48px; border:2px solid var(--primary-color);">
+                <div>
+                  <h6 class="fw-bold text-primary mb-0">Dr. Sarah Jenkins</h6>
+                  <div class="text-secondary small">Dean of Admissions, Cloud State Univ</div>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <div class="rating-stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <span class="badge bg-primary-subtle text-primary rounded-pill" style="font-size:0.65rem;">Registrar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="premium-testimonial-card">
+            <div class="testimonial-bubble">
+              "The multi-step validation checks and password strength trackers minimized registration errors by 70%. Highly recommend this visual AWS console design!"
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <div class="d-flex align-items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Marcus+Aurelius&background=06B6D4&color=fff" alt="User Ava" class="rounded-circle" style="width:48px; height:48px; border:2px solid var(--primary-color);">
+                <div>
+                  <h6 class="fw-bold text-primary mb-0">Marcus Aurelius</h6>
+                  <div class="text-secondary small">Lead Registrar, AWS Tech Academy</div>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <div class="rating-stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <span class="badge bg-info-subtle text-info rounded-pill" style="font-size:0.65rem;">Admin</span>
+              </div>
             </div>
           </div>
         </div>
@@ -305,23 +604,145 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-4 border-top" style="background-color: var(--card-bg);">
-    <div class="container text-center">
-      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-        <p class="mb-0 text-secondary small">&copy; 2026 EduCloud Inc. Built for portfolio presentation & cloud deployment.</p>
-        <div class="d-flex gap-3 text-secondary">
-          <a href="#" class="text-decoration-none text-secondary hover:text-primary"><i class="fab fa-github"></i></a>
-          <a href="#" class="text-decoration-none text-secondary hover:text-primary"><i class="fab fa-aws"></i></a>
-          <a href="#" class="text-decoration-none text-secondary hover:text-primary"><i class="fab fa-linkedin"></i></a>
+  <!-- FAQ Accordion Section -->
+  <section class="py-5" style="background-color: var(--bg-color);">
+    <div class="container py-5" style="max-width: 800px;">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="fw-bold text-primary h1">Common Inquiries FAQ</h2>
+        <p class="text-secondary">Explore general queries regarding security standards and integrations.</p>
+      </div>
+
+      <div class="accordion faq-accordion" id="faqAccordion" data-aos="fade-up">
+        
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Is my transcript document encrypted?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-secondary small" style="line-height: 1.6;">
+              Yes. All uploads are written to secure Amazon S3 Buckets using server-side AES-256 encryption. Only verified registrars can access the files.
+            </div>
+          </div>
         </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              How does the system auto-scale?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-secondary small" style="line-height: 1.6;">
+              EduCloud deploys server clones behind an Application Load Balancer using EC2 Auto-Scaling configurations based on server memory usage logs.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Who receives the SNS alerts on upload events?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-secondary small" style="line-height: 1.6;">
+              Audits notifications are pushed to registrar administrators subscribed to the respective SNS Topic queues, allowing prompt validation checks.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Footer Section -->
+  <footer class="py-5 dark-footer">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <!-- Col 1: Brand -->
+        <div class="col-lg-3 col-sm-6 text-start">
+          <a class="d-flex align-items-center gap-2 text-white text-decoration-none mb-3" href="index.html" style="font-weight: 900; font-size: 1.4rem;">
+            <i class="bi bi-clouds-fill text-primary"></i>
+            <span>EduCloud</span>
+          </a>
+          <p class="text-secondary small" style="max-width: 280px; line-height: 1.6;">EduCloud is a cloud-based Student Document Upload & Review platform built with Amazon Web Services integrations.</p>
+        </div>
+        
+        <!-- Col 2: Links -->
+        <div class="col-lg-2 col-sm-6 text-start">
+          <h6 class="text-uppercase text-white mb-3">Quick Links</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2 small">
+            <li><a href="#hero" class="text-decoration-none hover-text-primary">Home</a></li>
+            <li><a href="#features" class="text-decoration-none hover-text-primary">Features</a></li>
+            <li><a href="#aws-services" class="text-decoration-none hover-text-primary">AWS services</a></li>
+            <li><a href="#about" class="text-decoration-none hover-text-primary">Architecture</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: AWS links -->
+        <div class="col-lg-3 col-sm-6 text-start">
+          <h6 class="text-uppercase text-white mb-3">AWS Services Used</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2 small">
+            <li><a href="#" class="text-decoration-none hover-text-primary"><i class="bi bi-database me-1 text-primary"></i>Amazon RDS MySQL</a></li>
+            <li><a href="#" class="text-decoration-none hover-text-primary"><i class="bi bi-cloud me-1 text-info"></i>Amazon S3 Storage</a></li>
+            <li><a href="#" class="text-decoration-none hover-text-primary"><i class="bi bi-envelope me-1 text-warning"></i>Amazon SNS Messaging</a></li>
+            <li><a href="#" class="text-decoration-none hover-text-primary"><i class="bi bi-cpu me-1 text-danger"></i>Amazon EC2 / AutoScale</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="col-lg-4 col-sm-6 text-start">
+          <h6 class="text-uppercase text-white mb-3">SaaS Newsletter</h6>
+          <p class="text-secondary small mb-3">Subscribe to receive system uptime reports and AWS infrastructure updates.</p>
+          <form class="d-flex gap-2 mb-3" onsubmit="event.preventDefault(); showToast('Newsletter Subscribed', 'You have successfully subscribed to our uptime newsletter.', 'success')">
+            <input type="email" class="form-control rounded-pill px-3 bg-dark border-0 text-white" style="font-size:0.85rem;" placeholder="name@domain.com" required>
+            <button type="submit" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width:36px; height:36px;"><i class="bi bi-send-fill" style="font-size:0.85rem;"></i></button>
+          </form>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-secondary rounded-circle p-0 d-flex align-items-center justify-content-center" style="width:36px; height:36px; border-color:rgba(255,255,255,0.1);"><i class="bi bi-github text-white"></i></a>
+            <a href="#" class="btn btn-outline-secondary rounded-circle p-0 d-flex align-items-center justify-content-center" style="width:36px; height:36px; border-color:rgba(255,255,255,0.1);"><i class="bi bi-linkedin text-white"></i></a>
+            <a href="#" class="btn btn-outline-secondary rounded-circle p-0 d-flex align-items-center justify-content-center" style="width:36px; height:36px; border-color:rgba(255,255,255,0.1);"><i class="bi bi-envelope text-white"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-top pt-4 text-center" style="border-color: rgba(255, 255, 255, 0.05) !important;">
+        <p class="mb-0 text-secondary small">&copy; 2026 EduCloud Inc. Built for AWS cloud deployment portfolios. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
+  <!-- GSAP Libraries CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Global Application Code -->
   <script src="js/app.js"></script>
+  
+  <script>
+    // Initialize AOS Animations
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      // Count up statistics animation using GSAP
+      const countNums = document.querySelectorAll('.count-num');
+      countNums.forEach(num => {
+        const target = parseFloat(num.getAttribute('data-target'));
+        gsap.to(num, {
+          innerText: target,
+          duration: 2.5,
+          snap: { innerText: 1 },
+          ease: 'power3.out'
+        });
+      });
+    });
+  </script>
 </body>
 </html>

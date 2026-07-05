@@ -7,9 +7,11 @@
   <title>My Profile - EduCloud</title>
   
   <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Global Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <!-- Dashboard Layout Stylesheet -->
@@ -33,7 +35,7 @@
     <nav id="sidebar">
       <div class="sidebar-header">
         <a href="student-dashboard.html" class="sidebar-logo">
-          <i class="fas fa-graduation-cap"></i>
+          <i class="bi bi-clouds-fill fs-4 float-anim"></i>
           <span>EduCloud</span>
         </a>
       </div>
@@ -41,25 +43,25 @@
       <ul class="components">
         <li>
           <a href="student-dashboard.html">
-            <i class="fas fa-chart-pie"></i>
+            <i class="bi bi-grid-1x2-fill"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li class="active">
           <a href="student-profile.html">
-            <i class="fas fa-user-circle"></i>
+            <i class="bi bi-person-bounding-box"></i>
             <span>My Profile</span>
           </a>
         </li>
         <li>
           <a href="upload-document.html">
-            <i class="fas fa-cloud-upload-alt"></i>
+            <i class="bi bi-cloud-arrow-up-fill"></i>
             <span>Upload Documents</span>
           </a>
         </li>
-        <li>
+        <li class="mt-5">
           <a href="#" class="logout-trigger text-danger">
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="bi bi-box-arrow-left text-danger"></i>
             <span>Logout</span>
           </a>
         </li>
@@ -70,10 +72,10 @@
     <div id="content">
       
       <!-- Top Navbar -->
-      <nav class="navbar dashboard-navbar">
+      <nav class="navbar dashboard-navbar nav-glass">
         <div class="d-flex align-items-center gap-3">
           <button type="button" id="sidebarCollapse" class="btn btn-light rounded-circle" aria-label="Toggle sidebar">
-            <i class="fas fa-align-left"></i>
+            <i class="bi bi-justify-left"></i>
           </button>
           
           <!-- Breadcrumbs -->
@@ -81,8 +83,13 @@
         </div>
         
         <div class="d-flex align-items-center gap-3">
+          <!-- Dark Mode Toggle -->
+          <button id="theme-toggle" class="btn btn-link text-decoration-none text-secondary p-2" aria-label="Toggle dark mode">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+          
           <!-- User Profile Avatar -->
-          <img id="nav-avatar" src="https://via.placeholder.com/150" alt="Student Profile Avatar" class="profile-dropdown-img">
+          <img id="nav-avatar" src="https://ui-avatars.com/api/?name=Student&background=2563EB&color=fff" alt="Student Profile Avatar" class="profile-dropdown-img">
         </div>
       </nav>
 
@@ -91,20 +98,29 @@
         
         <!-- Page Title & Edit Button -->
         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-          <h3 class="fw-bold mb-0 text-primary"><i class="fas fa-user-circle me-2"></i>Student Profile</h3>
-          <a href="edit-profile.html" class="btn-premium text-decoration-none">
-            <i class="fas fa-user-edit me-2"></i>Edit Profile
+          <h3 class="fw-bold mb-0 text-primary d-flex align-items-center gap-2">
+            <i class="bi bi-person-bounding-box fs-3"></i>
+            <span>Student Profile</span>
+          </h3>
+          <a href="edit-profile.html" class="btn-premium text-decoration-none rounded-pill">
+            <i class="bi bi-pencil-square me-2"></i>Edit Profile
           </a>
         </div>
 
         <!-- Banner Card Summary -->
-        <div class="profile-banner slide-up">
-          <img id="profile-avatar-large" src="https://via.placeholder.com/150" alt="Large Profile Avatar" class="profile-avatar-large">
+        <div class="profile-banner glass-card p-4 slide-up mb-4 d-flex align-items-center gap-4 flex-wrap" style="background: linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(56,189,248,0.06) 100%);">
+          <img id="profile-avatar-large" src="https://ui-avatars.com/api/?name=Student&background=2563EB&color=fff&size=128" alt="Large Profile Avatar" class="profile-avatar-large shadow-lg" style="border: 4px solid var(--card-bg);">
           <div class="profile-summary">
-            <div id="profile-name" class="profile-name">Student Name</div>
-            <div class="profile-meta">
-              <span id="profile-id"><i class="fas fa-id-badge text-primary"></i> SMS-XXXX</span>
-              <span><i class="fas fa-shield-alt text-warning"></i> Status: <span class="badge bg-success" id="profile-status-badge">Active</span></span>
+            <div id="profile-name" class="fw-bold text-primary mb-2" style="font-size: 1.75rem; letter-spacing:-0.5px;">Student Name</div>
+            <div class="profile-meta d-flex align-items-center gap-3 flex-wrap">
+              <span id="profile-id" class="text-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-id-card-fill text-primary"></i> 
+                <span>SMS-XXXX</span>
+              </span>
+              <span class="text-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-shield-check-fill text-success"></i> 
+                <span>Status: <span class="badge bg-success" id="profile-status-badge">Active</span></span>
+              </span>
             </div>
           </div>
         </div>
@@ -112,20 +128,23 @@
         <!-- Details Card -->
         <div class="row g-4 mb-4">
           <div class="col-12">
-            <div class="custom-card profile-detail-card slide-up">
-              <h6><i class="fas fa-user me-2"></i>Account Details</h6>
+            <div class="glass-card profile-detail-card slide-up p-4">
+              <h5 class="fw-bold text-primary mb-3 pb-2 border-bottom d-flex align-items-center gap-2" style="border-color: var(--border-color) !important;">
+                <i class="bi bi-file-earmark-person"></i>
+                <span>Account details</span>
+              </h5>
               
-              <div class="detail-row">
-                <div class="detail-label">Student ID</div>
-                <div class="detail-value font-monospace fw-bold" id="detail-id">SMS-XXXX</div>
+              <div class="detail-row py-2 border-bottom" style="border-color: var(--border-color) !important;">
+                <div class="detail-label text-secondary small fw-bold">Student ID</div>
+                <div class="detail-value font-monospace fw-bold text-primary" id="detail-id">SMS-XXXX</div>
               </div>
-              <div class="detail-row">
-                <div class="detail-label">Full Name</div>
-                <div class="detail-value" id="detail-name">Student Name</div>
+              <div class="detail-row py-2 border-bottom" style="border-color: var(--border-color) !important;">
+                <div class="detail-label text-secondary small fw-bold">Full Name</div>
+                <div class="detail-value text-primary" id="detail-name">Student Name</div>
               </div>
-              <div class="detail-row">
-                <div class="detail-label">Email Address</div>
-                <div class="detail-value" id="detail-email">student@example.com</div>
+              <div class="detail-row py-2" style="border-color: var(--border-color) !important;">
+                <div class="detail-label text-secondary small fw-bold">Email Address</div>
+                <div class="detail-value text-primary" id="detail-email">student@example.com</div>
               </div>
             </div>
           </div>
@@ -137,7 +156,7 @@
   </div>
 
   <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Global App JS -->
   <script src="js/app.js"></script>
   <!-- Profile Page Logic -->

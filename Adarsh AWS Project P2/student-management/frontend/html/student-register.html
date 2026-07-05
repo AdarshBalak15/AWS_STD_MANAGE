@@ -7,30 +7,134 @@
   <title>Student Registration - EduCloud</title>
   
   <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Global Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <!-- Login/Auth Stylesheet -->
   <link href="css/login.css" rel="stylesheet">
+  
+  <style>
+    /* Registration Steps Indicator */
+    .register-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    
+    .register-steps::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--border-color);
+      z-index: 1;
+    }
+    
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--bg-color);
+      border: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    
+    .step-dot.active {
+      border-color: var(--primary-color);
+      background-color: var(--primary-color);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    }
+    
+    .step-label {
+      position: absolute;
+      top: 38px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .step-dot.active .step-label {
+      color: var(--primary-color);
+    }
+
+    /* Password Strength Indicator */
+    .password-strength-wrapper {
+      margin-top: -0.75rem;
+      margin-bottom: 1.25rem;
+      padding: 0 5px;
+    }
+
+    .strength-bar {
+      height: 4px;
+      background-color: var(--border-color);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      width: 0%;
+    }
+
+    .strength-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 4px;
+      display: block;
+      transition: color 0.3s;
+    }
+  </style>
 </head>
 <body>
 
   <div class="auth-wrapper" style="min-height: 100vh;">
-    <div class="auth-card slide-up" style="max-width: 500px;">
+    <div class="auth-card glass-card glow-border slide-up" style="max-width: 520px; z-index: 1;">
       
       <!-- Header -->
       <div class="auth-header pb-2">
-        <div class="auth-logo">
-          <i class="fas fa-user-plus text-primary"></i>
-        </div>
+        <a href="index.html" class="d-inline-flex align-items-center gap-2 text-primary text-decoration-none mb-3" style="font-weight: 800; font-size: 1.5rem;">
+          <i class="bi bi-clouds-fill"></i>
+          <span>EduCloud</span>
+        </a>
         <h2 class="auth-title">Create Account</h2>
         <p class="auth-subtitle">Register to begin student document administration</p>
       </div>
 
       <!-- Body Form -->
       <div class="auth-body">
+        
+        <!-- Progress Steps -->
+        <div class="register-steps px-3">
+          <div class="step-dot active" id="step-avatar-dot">
+            1
+            <div class="step-label" style="left: -20px;">Avatar</div>
+          </div>
+          <div class="step-dot" id="step-info-dot">
+            2
+            <div class="step-label" style="left: -15px;">Personal Details</div>
+          </div>
+          <div class="step-dot" id="step-verify-dot">
+            3
+            <div class="step-label" style="right: -25px;">Submission</div>
+          </div>
+        </div>
+
         <form id="student-register-form" novalidate>
           
           <!-- Avatar Upload Component -->
@@ -44,12 +148,12 @@
                 <div id="profile-preview-container" style="display: none;">
                   <img id="profile-photo-preview" src="#" alt="Profile Photo Preview" class="profile-preview-circle">
                   <button type="button" id="remove-preview" class="remove-preview-btn" aria-label="Remove image">
-                    <i class="fas fa-times"></i>
+                    <i class="bi bi-x-lg"></i>
                   </button>
                 </div>
                 
                 <div id="upload-placeholder" class="text-center">
-                  <div class="upload-icon-label"><i class="fas fa-cloud-upload-alt"></i></div>
+                  <div class="upload-icon-label"><i class="bi bi-cloud-arrow-up-fill text-primary"></i></div>
                   <div class="upload-instructions font-weight-bold text-primary">Drag & Drop profile picture here</div>
                   <div class="upload-instructions text-secondary">or click to browse local files</div>
                   <div class="upload-instructions text-muted small mt-1">Accepts: JPG, JPEG, PNG (Max 1MB)</div>
@@ -61,46 +165,57 @@
             </div>
           </div>
 
-          <!-- Personal Information -->
-          <h6 class="border-bottom pb-2 mb-3 text-primary font-weight-bold"><i class="fas fa-user me-2"></i>Account Details</h6>
+          <!-- Personal Information Header -->
+          <h6 class="border-bottom pb-2 mb-3 text-primary font-weight-bold d-flex align-items-center gap-2">
+            <i class="bi bi-person-badge-fill"></i>
+            <span>Account Details</span>
+          </h6>
           
           <!-- Name -->
           <div class="form-group-custom">
             <input type="text" id="register-name" class="form-control-custom" placeholder="Full Name" required autocomplete="name">
-            <i class="fas fa-id-card"></i>
+            <i class="bi bi-person-fill"></i>
             <div class="invalid-feedback ps-2">Please enter your full name (minimum 3 characters).</div>
           </div>
 
           <!-- Email -->
           <div class="form-group-custom">
             <input type="email" id="register-email" class="form-control-custom" placeholder="Email Address" required autocomplete="email">
-            <i class="fas fa-envelope"></i>
+            <i class="bi bi-envelope-fill"></i>
             <div class="invalid-feedback ps-2">Please enter a valid email address.</div>
           </div>
 
           <!-- Password -->
           <div class="form-group-custom">
             <input type="password" id="register-password" class="form-control-custom" placeholder="Security Password" required autocomplete="new-password">
-            <i class="fas fa-lock"></i>
+            <i class="bi bi-shield-lock-fill"></i>
             <span class="password-toggle-btn" id="togglePasswordRegister" aria-label="Toggle password visibility">
-              <i class="fas fa-eye"></i>
+              <i class="bi bi-eye-fill"></i>
             </span>
             <div class="invalid-feedback ps-2">Password must be at least 6 characters.</div>
+          </div>
+
+          <!-- Password Strength Indicator -->
+          <div class="password-strength-wrapper" id="register-pw-strength-container" style="display:none;">
+            <div class="progress" style="height: 4px; background-color: var(--border-color);">
+              <div class="strength-bar" id="register-pw-strength-bar"></div>
+            </div>
+            <span class="strength-text" id="register-pw-strength-text">Password Strength</span>
           </div>
 
           <!-- Confirm Password -->
           <div class="form-group-custom">
             <input type="password" id="register-confirm-password" class="form-control-custom" placeholder="Confirm Password" required autocomplete="new-password">
-            <i class="fas fa-shield-alt"></i>
+            <i class="bi bi-shield-check"></i>
             <span class="password-toggle-btn" id="toggleConfirmPasswordRegister" aria-label="Toggle password visibility">
-              <i class="fas fa-eye"></i>
+              <i class="bi bi-eye-fill"></i>
             </span>
             <div class="invalid-feedback ps-2">Passwords do not match.</div>
           </div>
 
           <!-- Submit -->
           <button type="submit" class="btn-premium w-100 py-3 rounded-pill mb-3">
-            <i class="fas fa-user-plus me-2"></i>Create Student Account
+            <i class="bi bi-person-plus-fill me-2"></i>Create Student Account
           </button>
 
           <!-- Back Option links -->
@@ -109,7 +224,9 @@
             <a href="student-login.html" class="text-primary font-weight-bold text-decoration-none ms-1">Login here</a>
           </div>
           <div class="text-center mt-2 small">
-            <a href="index.html" class="text-decoration-none text-secondary"><i class="fas fa-arrow-left me-1"></i>Back to Home</a>
+            <a href="index.html" class="text-decoration-none text-secondary d-inline-flex align-items-center gap-1">
+              <i class="bi bi-arrow-left-short fs-5"></i> Back to Home
+            </a>
           </div>
 
         </form>
@@ -119,7 +236,7 @@
   </div>
 
   <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Global App JS -->
   <script src="js/app.js"></script>
   <!-- Register Page Script Logic -->

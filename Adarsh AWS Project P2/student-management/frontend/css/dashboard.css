@@ -1,11 +1,11 @@
 /* 
 ==================================================
 DASHBOARD SYSTEM STYLE SHEET: css/dashboard.css
-AWS-Bound Student Management System Frontend
+EduCloud Modern SaaS Dashboard Layout (Vercel/Linear Styled)
 ==================================================
 */
 
-/* Layout Grid Setup */
+/* Core Shell Grid Wrapper */
 .wrapper {
   display: flex;
   align-items: stretch;
@@ -18,16 +18,21 @@ SIDEBAR LAYOUT
 #sidebar {
   min-width: var(--sidebar-width);
   max-width: var(--sidebar-width);
-  background-color: var(--card-bg);
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: var(--text-primary);
   border-right: 1px solid var(--border-color);
   min-height: 100vh;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 0; top: 0;
   z-index: 1000;
-  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
+  transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.01);
+}
+
+[data-theme="dark"] #sidebar {
+  background-color: rgba(11, 15, 25, 0.75);
 }
 
 #sidebar.active {
@@ -45,14 +50,15 @@ SIDEBAR LAYOUT
 }
 
 #sidebar .sidebar-logo {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 900;
+  font-size: 1.35rem;
   color: var(--primary-color);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   white-space: nowrap;
+  letter-spacing: -0.5px;
 }
 
 #sidebar.active .sidebar-logo span {
@@ -60,30 +66,30 @@ SIDEBAR LAYOUT
 }
 
 #sidebar ul.components {
-  padding: 1.5rem 0.75rem;
+  padding: 2rem 0.75rem;
 }
 
 #sidebar ul li {
   list-style: none;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 #sidebar ul li a {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 0.8rem 1rem;
+  padding: 0.85rem 1.2rem;
   color: var(--text-secondary);
   text-decoration: none;
-  border-radius: 10px;
-  font-weight: 500;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
   font-size: 0.9rem;
-  transition: all var(--transition-speed);
+  transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #sidebar ul li a i {
-  font-size: 1.1rem;
-  width: 20px;
+  font-size: 1.2rem;
+  width: 24px;
   text-align: center;
   transition: color var(--transition-speed);
 }
@@ -91,7 +97,13 @@ SIDEBAR LAYOUT
 #sidebar ul li a:hover,
 #sidebar ul li.active > a {
   color: var(--primary-color);
-  background-color: rgba(37, 99, 235, 0.08);
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+[data-theme="dark"] #sidebar ul li a:hover,
+[data-theme="dark"] #sidebar ul li.active > a {
+  background-color: rgba(99, 102, 241, 0.12);
+  color: var(--primary-color);
 }
 
 #sidebar ul li.active > a i {
@@ -99,12 +111,12 @@ SIDEBAR LAYOUT
 }
 
 #sidebar.active ul.components {
-  padding: 1.5rem 0.5rem;
+  padding: 2rem 0.5rem;
 }
 
 #sidebar.active ul li a {
   justify-content: center;
-  padding: 0.8rem;
+  padding: 0.85rem;
 }
 
 #sidebar.active ul li a span {
@@ -118,7 +130,7 @@ CONTENT CONTAINER
   width: calc(100% - var(--sidebar-width));
   padding-left: 0;
   min-height: 100vh;
-  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   margin-left: var(--sidebar-width);
 }
@@ -128,10 +140,12 @@ CONTENT CONTAINER
   margin-left: var(--sidebar-collapsed-width);
 }
 
-/* Navbar Global Layout */
+/* Top Navbar */
 .dashboard-navbar {
   height: var(--navbar-height);
-  background-color: var(--card-bg);
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color);
   padding: 0 2rem;
   display: flex;
@@ -142,11 +156,15 @@ CONTENT CONTAINER
   z-index: 999;
 }
 
+[data-theme="dark"] .dashboard-navbar {
+  background-color: rgba(2, 6, 23, 0.7);
+}
+
 /* --------------------------------------------------
-DASHBOARD CARDS & STATS
+DASHBOARD STATS CARDS
 -------------------------------------------------- */
 .stat-card {
-  border-radius: 15px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   background-color: var(--card-bg);
   padding: 1.5rem;
@@ -154,93 +172,98 @@ DASHBOARD CARDS & STATS
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px var(--shadow-color);
+  border-color: rgba(99, 102, 241, 0.25);
 }
 
 .stat-icon {
   width: 50px;
   height: 50px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
+  flex-shrink: 0;
 }
 
-.stat-icon.primary { background-color: rgba(37, 99, 235, 0.1); color: var(--primary-color); }
-.stat-icon.success { background-color: rgba(16, 185, 129, 0.1); color: var(--success-color); }
-.stat-icon.warning { background-color: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
-.stat-icon.danger { background-color: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+.stat-icon.primary { background-color: rgba(99, 102, 241, 0.08); color: var(--primary-color); }
+.stat-icon.success { background-color: rgba(16, 185, 129, 0.08); color: var(--success-color); }
+.stat-icon.warning { background-color: rgba(245, 158, 11, 0.08); color: var(--warning-color); }
+.stat-icon.danger { background-color: rgba(239, 68, 68, 0.08); color: var(--danger-color); }
 
-/* Dashboard Tables */
+/* --------------------------------------------------
+DASHBOARD TABLES
+-------------------------------------------------- */
 .table-custom {
-  background-color: var(--card-bg);
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--card-shadow);
+  background-color: transparent;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  width: 100%;
 }
 
 .table-custom th {
-  background-color: rgba(37, 99, 235, 0.02);
   color: var(--text-secondary);
-  font-weight: 600;
-  font-size: 0.85rem;
+  font-weight: 700;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.75px;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border: none;
 }
 
 .table-custom td {
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   vertical-align: middle;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   color: var(--text-primary);
   font-size: 0.9rem;
 }
 
-.table-custom tr:last-child td {
-  border-bottom: none;
+.table-custom td:first-child {
+  border-left: 1px solid var(--border-color);
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
 }
 
-/* Status Badges */
+.table-custom td:last-child {
+  border-right: 1px solid var(--border-color);
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.table-custom tr {
+  transition: transform var(--transition-speed) ease;
+}
+
+.table-custom tbody tr:hover td {
+  background-color: rgba(99, 102, 241, 0.02);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Custom Status Badges */
 .badge-custom {
   font-size: 0.75rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 20px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 50px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
-.badge-custom.approved { background-color: rgba(16, 185, 129, 0.1); color: var(--success-color); }
-.badge-custom.pending { background-color: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
-.badge-custom.rejected { background-color: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+.badge-custom.approved { background-color: rgba(16, 185, 129, 0.08); color: var(--success-color); border: 1px solid rgba(16, 185, 129, 0.15); }
+.badge-custom.pending { background-color: rgba(245, 158, 11, 0.08); color: var(--warning-color); border: 1px solid rgba(245, 158, 11, 0.15); }
+.badge-custom.rejected { background-color: rgba(239, 68, 68, 0.08); color: var(--danger-color); border: 1px solid rgba(239, 68, 68, 0.15); }
 
-/* Notification Items List */
-.notification-item {
-  display: flex;
-  gap: 12px;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.notification-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.notification-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  margin-top: 6px;
-  flex-shrink: 0;
-}
-
-/* User Menu Dropdown */
+/* Avatar badge */
 .profile-dropdown-img {
   width: 36px;
   height: 36px;
@@ -250,7 +273,7 @@ DASHBOARD CARDS & STATS
 }
 
 /* --------------------------------------------------
-RESPONSIVE LAYOUT MEDIA QUERIES
+RESPONSIVE OVERRIDES
 -------------------------------------------------- */
 @media (max-width: 992px) {
   #sidebar {
@@ -262,11 +285,11 @@ RESPONSIVE LAYOUT MEDIA QUERIES
     max-width: var(--sidebar-width);
   }
   #sidebar.active ul.components {
-    padding: 1.5rem 0.75rem;
+    padding: 2rem 0.75rem;
   }
   #sidebar.active ul li a {
     justify-content: flex-start;
-    padding: 0.8rem 1rem;
+    padding: 0.85rem 1.2rem;
   }
   #sidebar.active ul li a span {
     display: block;
@@ -283,6 +306,6 @@ RESPONSIVE LAYOUT MEDIA QUERIES
     margin-left: 0;
   }
   .dashboard-navbar {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 }

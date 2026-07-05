@@ -1,42 +1,56 @@
 /* 
 ==================================================
-PROFILE PAGE STYLE SHEET: css/profile.css
-AWS-Bound Student Management System Frontend
+PROFILE SETTINGS STYLE SHEET: css/profile.css
+EduCloud Modern SaaS Settings Panel (Supabase/Stripe Styled)
 ==================================================
 */
 
 /* Core Profile Bio Banner */
 .profile-banner {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(30, 64, 175, 0.02) 100%);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-color);
-  border-radius: 15px;
-  padding: 2rem;
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+[data-theme="dark"] .profile-banner {
+  background: rgba(11, 15, 25, 0.4);
 }
 
 .profile-avatar-large {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid var(--card-bg);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+  border: 4px solid var(--card-bg);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
   flex-shrink: 0;
+  transition: transform var(--transition-speed);
+}
+
+.profile-avatar-large:hover {
+  transform: scale(1.05);
 }
 
 .profile-summary {
   flex-grow: 1;
+  z-index: 1;
 }
 
 .profile-name {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.35rem;
 }
 
 .profile-meta {
@@ -44,13 +58,14 @@ AWS-Bound Student Management System Frontend
   gap: 1.5rem;
   flex-wrap: wrap;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .profile-meta span {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* Detail Info Grids */
@@ -58,35 +73,35 @@ AWS-Bound Student Management System Frontend
   height: 100%;
 }
 
-.profile-detail-card h6 {
-  font-size: 1rem;
-  font-weight: 700;
+.profile-detail-card h5 {
+  font-size: 1.1rem;
+  font-weight: 800;
   color: var(--primary-color);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1.5px solid rgba(37, 99, 235, 0.1);
 }
 
 .detail-row {
   display: flex;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
 }
 
 .detail-row:last-child {
-  margin-bottom: 0;
+  border-bottom: none !important;
 }
 
 .detail-label {
-  width: 140px;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--text-secondary);
-  flex-shrink: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
 }
 
 .detail-value {
   color: var(--text-primary);
-  word-break: break-word;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 /* Profile Photo Select / Preview Component */
@@ -110,8 +125,8 @@ AWS-Bound Student Management System Frontend
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   background-color: var(--primary-color);
   color: #FFFFFF;
   border: 3px solid var(--card-bg);
@@ -126,7 +141,7 @@ AWS-Bound Student Management System Frontend
 
 .profile-photo-select-btn:hover {
   transform: scale(1.1);
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
 /* Responsive Overrides */
@@ -135,7 +150,7 @@ AWS-Bound Student Management System Frontend
     flex-direction: column;
     text-align: center;
     padding: 1.5rem;
-    gap: 1rem;
+    gap: 1.25rem;
   }
   .profile-meta {
     justify-content: center;
@@ -143,11 +158,11 @@ AWS-Bound Student Management System Frontend
   }
   .detail-row {
     flex-direction: column;
-    margin-bottom: 0.75rem;
+    align-items: flex-start;
+    gap: 4px;
   }
   .detail-label {
     width: 100%;
-    margin-bottom: 0.15rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 }

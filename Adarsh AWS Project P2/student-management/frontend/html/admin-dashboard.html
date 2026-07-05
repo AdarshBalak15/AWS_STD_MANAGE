@@ -7,9 +7,11 @@
   <title>Admin Dashboard - EduCloud</title>
   
   <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Global Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <!-- Dashboard Layout Stylesheet -->
@@ -33,7 +35,7 @@
     <nav id="sidebar" class="border-end border-danger-subtle">
       <div class="sidebar-header border-bottom border-danger-subtle">
         <a href="admin-dashboard.html" class="sidebar-logo text-danger">
-          <i class="fas fa-user-shield"></i>
+          <i class="bi bi-shield-lock-fill float-anim"></i>
           <span>EduCloud Admin</span>
         </a>
       </div>
@@ -41,13 +43,13 @@
       <ul class="components">
         <li class="active">
           <a href="admin-dashboard.html" class="text-danger-hover">
-            <i class="fas fa-chart-line text-danger"></i>
+            <i class="bi bi-speedometer text-danger"></i>
             <span>Overview Console</span>
           </a>
         </li>
-        <li>
-          <a href="#" class="logout-trigger text-danger mt-5">
-            <i class="fas fa-sign-out-alt"></i>
+        <li class="mt-5">
+          <a href="#" class="logout-trigger text-danger">
+            <i class="bi bi-box-arrow-left text-danger"></i>
             <span>Console Logout</span>
           </a>
         </li>
@@ -58,10 +60,10 @@
     <div id="content">
       
       <!-- Top Header Navbar -->
-      <nav class="navbar dashboard-navbar">
+      <nav class="navbar dashboard-navbar nav-glass">
         <div class="d-flex align-items-center gap-3">
           <button type="button" id="sidebarCollapse" class="btn btn-light rounded-circle" aria-label="Toggle sidebar">
-            <i class="fas fa-align-left"></i>
+            <i class="bi bi-justify-left"></i>
           </button>
           
           <!-- Breadcrumbs -->
@@ -69,9 +71,17 @@
         </div>
         
         <div class="d-flex align-items-center gap-3">
+          <!-- Dark Mode Toggle -->
+          <button id="theme-toggle" class="btn btn-link text-decoration-none text-secondary p-2" aria-label="Toggle dark mode">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+          
           <!-- Profile Badge -->
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-danger rounded-pill px-3 py-2 fw-bold"><i class="fas fa-shield-alt me-1"></i>Admin Console</span>
+          <div class="d-flex align-items-center gap-2 border-start ps-3" style="border-color: var(--border-color) !important;">
+            <span class="badge bg-danger rounded-pill px-3 py-2 fw-bold d-flex align-items-center gap-1">
+              <i class="bi bi-shield-fill"></i>
+              <span>Admin Console</span>
+            </span>
           </div>
         </div>
       </nav>
@@ -80,14 +90,14 @@
       <div class="container-fluid p-4">
         
         <!-- Welcome Administrative Banner -->
-        <div class="custom-card mb-4 border-0 text-white slide-up" style="background: linear-gradient(135deg, var(--danger-color) 0%, var(--secondary-color) 100%);">
+        <div class="glass-card mb-4 border-0 text-white p-4 slide-up" style="background: linear-gradient(135deg, var(--danger-color) 0%, #1e1b4b 100%);">
           <div class="row align-items-center">
             <div class="col-md-9">
               <h3 class="fw-bold mb-2">Welcome to AWS Console Administration</h3>
-              <p class="mb-0 opacity-75">EduCloud evaluation interface. Seed dummy records, monitor student records, and verify uploaded documents.</p>
+              <p class="mb-0 opacity-75">EduCloud evaluation dashboard interface. Monitor student registration directories, search upload backlogs, and verify document compliance policies.</p>
             </div>
             <div class="col-md-3 text-end d-none d-md-block">
-              <i class="fas fa-user-shield" style="font-size:4.5rem; opacity:0.3;"></i>
+              <i class="bi bi-shield-fill-check float-anim" style="font-size:4.5rem; opacity:0.25; color:#ef4444;"></i>
             </div>
           </div>
         </div>
@@ -95,49 +105,71 @@
         <!-- Metrics Count Row -->
         <div class="row g-4 mb-4">
           <div class="col-xl-3 col-sm-6">
-            <div class="stat-card hover-scale admin-card-border-success">
+            <div class="stat-card hover-scale" style="border-left: 4px solid var(--primary-color);">
               <div>
                 <span class="text-secondary small d-block mb-1">Total Students</span>
                 <h3 id="stat-total-students" class="fw-bold mb-0">0</h3>
               </div>
               <div class="stat-icon primary">
-                <i class="fas fa-user-graduate text-primary"></i>
+                <i class="bi bi-people-fill text-primary"></i>
               </div>
             </div>
           </div>
           
           <div class="col-xl-3 col-sm-6">
-            <div class="stat-card hover-scale admin-card-border-warning">
+            <div class="stat-card hover-scale" style="border-left: 4px solid var(--warning-color);">
               <div>
                 <span class="text-secondary small d-block mb-1">Pending Files</span>
                 <h3 id="stat-pending-docs" class="fw-bold mb-0">0</h3>
               </div>
               <div class="stat-icon warning">
-                <i class="fas fa-clock text-warning"></i>
+                <i class="bi bi-hourglass-split text-warning"></i>
               </div>
             </div>
           </div>
 
           <div class="col-xl-3 col-sm-6">
-            <div class="stat-card hover-scale admin-card-border-success">
+            <div class="stat-card hover-scale" style="border-left: 4px solid var(--success-color);">
               <div>
                 <span class="text-secondary small d-block mb-1">Approved Files</span>
                 <h3 id="stat-approved-docs" class="fw-bold mb-0">0</h3>
               </div>
               <div class="stat-icon success">
-                <i class="fas fa-check-circle text-success"></i>
+                <i class="bi bi-check-circle-fill text-success"></i>
               </div>
             </div>
           </div>
 
           <div class="col-xl-3 col-sm-6">
-            <div class="stat-card hover-scale admin-card-border-danger">
+            <div class="stat-card hover-scale" style="border-left: 4px solid var(--danger-color);">
               <div>
                 <span class="text-secondary small d-block mb-1">Rejected Files</span>
                 <h3 id="stat-rejected-docs" class="fw-bold mb-0">0</h3>
               </div>
               <div class="stat-icon danger">
-                <i class="fas fa-times-circle text-danger"></i>
+                <i class="bi bi-x-circle-fill text-danger"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row g-4 mb-4">
+          <!-- Registration Activity Bar Chart -->
+          <div class="col-lg-7">
+            <div class="glass-card p-4 h-100">
+              <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-bar-chart-line-fill me-2"></i>Student Registration Activity</h5>
+              <div style="height: 250px; position: relative;">
+                <canvas id="adminRegChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- Verification ratio Doughnut Chart -->
+          <div class="col-lg-5">
+            <div class="glass-card p-4 h-100">
+              <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-pie-chart-fill me-2"></i>Global Verification Rates</h5>
+              <div style="height: 250px; position: relative;">
+                <canvas id="adminVerificationChart"></canvas>
               </div>
             </div>
           </div>
@@ -148,18 +180,21 @@
           
           <!-- Left: Students List -->
           <div class="col-lg-6">
-            <div class="custom-card p-0 border-0 h-100 slide-up">
-              <div class="px-4 py-3 border-bottom bg-transparent">
-                <h5 class="fw-bold mb-0"><i class="fas fa-users text-primary me-2"></i>Students Directory</h5>
+            <div class="glass-card p-0 border-0 h-100 slide-up">
+              <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-transparent flex-wrap gap-2" style="border-color: var(--border-color) !important;">
+                <h5 class="fw-bold mb-0 text-primary"><i class="bi bi-people-fill me-2"></i>Students Directory</h5>
+                <div class="d-flex gap-2">
+                  <input type="text" id="student-search-input" class="form-control form-control-sm rounded-pill px-3" placeholder="Search students..." style="max-width: 180px;">
+                </div>
               </div>
               <div class="table-responsive p-0">
                 <table class="table table-hover align-middle mb-0 table-custom border-0 shadow-none">
                   <thead>
                     <tr>
-                      <th>Avatar</th>
-                      <th>Student ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
+                      <th class="border-0">Avatar</th>
+                      <th class="border-0">Student ID</th>
+                      <th class="border-0">Name</th>
+                      <th class="border-0">Email</th>
                     </tr>
                   </thead>
                   <tbody id="admin-students-tbody">
@@ -172,18 +207,21 @@
           
           <!-- Right: Pending Document Review -->
           <div class="col-lg-6">
-            <div class="custom-card p-0 border-0 h-100 slide-up">
-              <div class="px-4 py-3 border-bottom bg-transparent">
-                <h5 class="fw-bold mb-0"><i class="fas fa-file-signature text-danger me-2"></i>Pending Document Review Queue</h5>
+            <div class="glass-card p-0 border-0 h-100 slide-up">
+              <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-transparent flex-wrap gap-2" style="border-color: var(--border-color) !important;">
+                <h5 class="fw-bold mb-0 text-danger"><i class="bi bi-file-earmark-lock-fill me-2"></i>Review Queue</h5>
+                <div class="d-flex gap-2">
+                  <input type="text" id="review-search-input" class="form-control form-control-sm rounded-pill px-3" placeholder="Search queue..." style="max-width: 180px;">
+                </div>
               </div>
               <div class="table-responsive p-0">
                 <table class="table table-hover align-middle mb-0 table-custom border-0 shadow-none">
                   <thead>
                     <tr>
-                      <th>Student Name</th>
-                      <th>Filename</th>
-                      <th>Link</th>
-                      <th>Actions</th>
+                      <th class="border-0">Student Name</th>
+                      <th class="border-0">Filename</th>
+                      <th class="border-0">Link</th>
+                      <th class="border-0">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="admin-pending-tbody">
@@ -201,8 +239,10 @@
     </div>
   </div>
 
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Global App JS -->
   <script src="js/app.js"></script>
   <!-- Admin Specific JS -->

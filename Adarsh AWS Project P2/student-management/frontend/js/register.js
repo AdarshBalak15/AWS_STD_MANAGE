@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const uploadPlaceholder = document.getElementById('upload-placeholder');
   const removeBtn = document.getElementById('remove-preview');
   
+  const stepAvatar = document.getElementById('step-avatar-dot');
+  const stepInfo = document.getElementById('step-info-dot');
+  const stepVerify = document.getElementById('step-verify-dot');
+  
   let base64Photo = ""; // Cached base64 photo
 
   // ==================================================
@@ -77,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
       previewImg.src = base64Photo;
       uploadPlaceholder.style.display = 'none';
       previewContainer.style.display = 'block';
+      
+      // Update Step Status
+      if (stepAvatar) stepAvatar.classList.add('active');
+      if (stepInfo) stepInfo.classList.add('active');
     };
     reader.readAsDataURL(file);
   }
@@ -87,6 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
     previewImg.src = "#";
     previewContainer.style.display = 'none';
     uploadPlaceholder.style.display = 'block';
+    
+    // Reset Step Status
+    if (stepInfo) stepInfo.classList.remove('active');
   }
 
   // ==================================================
@@ -104,11 +115,56 @@ document.addEventListener('DOMContentLoaded', () => {
         input.setAttribute('type', type);
         const icon = btn.querySelector('i');
         if (icon) {
-          icon.classList.toggle('fa-eye');
-          icon.classList.toggle('fa-eye-slash');
+          icon.classList.toggle('bi-eye-fill');
+          icon.classList.toggle('bi-eye-slash-fill');
         }
       });
     }
+  }
+
+  // ==================================================
+  // PASSWORD STRENGTH METER
+  // ==================================================
+  const pwInput = document.getElementById('register-password');
+  const strengthContainer = document.getElementById('register-pw-strength-container');
+  const strengthBar = document.getElementById('register-pw-strength-bar');
+  const strengthText = document.getElementById('register-pw-strength-text');
+
+  if (pwInput && strengthBar && strengthText && strengthContainer) {
+    pwInput.addEventListener('input', () => {
+      const val = pwInput.value;
+      if (!val) {
+        strengthContainer.style.display = 'none';
+        return;
+      }
+      
+      strengthContainer.style.display = 'block';
+      let score = 0;
+      
+      if (val.length >= 6) score += 1;
+      if (val.length >= 10) score += 1;
+      if (/[A-Z]/.test(val)) score += 1;
+      if (/[0-9]/.test(val)) score += 1;
+      if (/[^A-Za-z0-9]/.test(val)) score += 1;
+
+      // Update UI Based on Score
+      let percentage = (score / 5) * 100;
+      strengthBar.style.width = `${percentage}%`;
+      
+      if (score <= 2) {
+        strengthBar.className = 'strength-bar bg-danger';
+        strengthText.textContent = 'Password Strength: Weak';
+        strengthText.className = 'strength-text text-danger';
+      } else if (score <= 4) {
+        strengthBar.className = 'strength-bar bg-warning';
+        strengthText.textContent = 'Password Strength: Medium';
+        strengthText.className = 'strength-text text-warning';
+      } else {
+        strengthBar.className = 'strength-bar bg-success';
+        strengthText.textContent = 'Password Strength: Strong & Secure';
+        strengthText.className = 'strength-text text-success';
+      }
+    });
   }
 
   // ==================================================
@@ -116,6 +172,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==================================================
   const registerForm = document.getElementById('student-register-form');
   if (registerForm) {
+    // Auto trigger step 2 if typing details
+    const textInputs = ['register-name', 'register-email', 'register-password'];
+    textInputs.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('focus', () => {
+          if (stepInfo) stepInfo.classList.add('active');
+        });
+      }
+    });
+
     registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -141,7 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      if (stepVerify) stepVerify.classList.add('active');
       showLoader();
+      
       try {
         const payload = {
           name: nameInput.value.trim(),
@@ -166,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.location.href = 'student-dashboard.html';
         }, 1200);
       } catch (err) {
+        if (stepVerify) stepVerify.classList.remove('active');
         hideLoader();
         showToast('Registration Failed', err.message || 'Server error occurred.', 'danger');
       }

@@ -87,11 +87,20 @@ def create_app():
     def serve_index():
         return send_from_directory(html_dir, 'index.html')
 
+    # Register custom 404 handler
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return send_from_directory(html_dir, '404.html'), 404
+
     # Serve HTML pages dynamically
     @app.route('/<path:filename>')
     def serve_html_pages(filename):
         if filename.endswith('.html'):
-            return send_from_directory(html_dir, filename)
+            # Check if file exists to avoid triggering internal send_from_directory errors
+            target_path = os.path.join(html_dir, filename)
+            if os.path.exists(target_path):
+                return send_from_directory(html_dir, filename)
+            return page_not_found(None)
         
         # Check custom asset redirects
         local_path = os.path.join(frontend_dir, filename)

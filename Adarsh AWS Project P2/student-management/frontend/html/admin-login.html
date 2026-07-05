@@ -7,73 +7,148 @@
   <title>Admin Login - EduCloud</title>
   
   <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Global Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <!-- Login/Auth Stylesheet -->
   <link href="css/login.css" rel="stylesheet">
+  
+  <style>
+    .split-left {
+      background: linear-gradient(135deg, #1e1b4b 0%, #030712 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      color: #fff;
+      
+      /* Dark Mesh Grid */
+      background-image: 
+        radial-gradient(rgba(239, 68, 68, 0.08) 1px, transparent 0),
+        radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 0);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+    }
+    
+    .floating-card-mock {
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(16px);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      width: 320px;
+      margin-top: 2rem;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="auth-wrapper">
-    <div class="auth-card slide-up">
+  <div class="d-flex min-vh-100 flex-column flex-lg-row overflow-hidden">
+    
+    <!-- Left Screen: Admin Secure Illustration -->
+    <div class="col-lg-6 d-none d-lg-flex split-left" style="border-right: 1px solid rgba(239, 68, 68, 0.15);">
+      <div class="glow-spot" style="top: 20%; left: 20%; opacity: 0.8; width: 350px; height: 350px; background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);"></div>
+      <div class="glow-spot-accent" style="bottom: 20%; right: 20%; opacity: 0.8; width: 350px; height: 350px;"></div>
       
-      <!-- Card Header -->
-      <div class="auth-header">
-        <div class="auth-logo text-danger">
-          <i class="fas fa-user-shield"></i>
+      <div class="text-center float-anim" style="z-index: 1;">
+        <i class="bi bi-shield-lock-fill text-danger mb-4 d-block" style="font-size: 8rem; filter: drop-shadow(0 0 40px rgba(239,68,68,0.3));"></i>
+        <h1 class="fw-bold mb-3" style="letter-spacing: -1.5px; font-size: 2.85rem; background: linear-gradient(135deg, #fff 40%, var(--danger-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EduCloud Admin</h1>
+        <p class="text-secondary lead mx-auto" style="max-width: 440px; font-size: 1.1rem; line-height: 1.6;">
+          Console access for registrar operations, credential auditing, database backups, and AWS SNS status dispatching.
+        </p>
+      </div>
+
+      <!-- Simulated active transaction mock -->
+      <div class="floating-card-mock float-anim-reverse text-start" style="animation-duration: 9s;">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <span class="badge bg-danger-subtle text-danger rounded-pill px-2.5 py-1 fw-bold" style="font-size:0.7rem;">CONSOLE AUDIT</span>
+          <span class="text-warning small"><i class="bi bi-shield-fill-exclamation me-1"></i>Level 3</span>
         </div>
-        <h2 class="auth-title">Admin Portal</h2>
-        <p class="auth-subtitle">Console Log In</p>
+        <div class="d-flex align-items-center gap-3">
+          <div class="bg-danger-subtle text-danger rounded-3 d-flex align-items-center justify-content-center" style="width:40px; height:40px; font-size:1.25rem;">
+            <i class="bi bi-person-fill-lock"></i>
+          </div>
+          <div>
+            <div class="fw-bold small text-white">System Administrator</div>
+            <div class="text-secondary" style="font-size:0.7rem;">Auditing logs via CloudWatch...</div>
+          </div>
+        </div>
       </div>
-
-      <!-- Card Body -->
-      <div class="auth-body">
-        <form id="admin-login-form" novalidate>
-          
-          <!-- Username Input -->
-          <div class="form-group-custom">
-            <input type="text" id="admin-username" class="form-control-custom" placeholder="Administrator Username" required autocomplete="username">
-            <i class="fas fa-user"></i>
-            <div class="invalid-feedback ps-2">Please enter your administrator username.</div>
-          </div>
-
-          <!-- Password Input -->
-          <div class="form-group-custom">
-            <input type="password" id="admin-password" class="form-control-custom" placeholder="Console Password" required autocomplete="current-password">
-            <i class="fas fa-lock"></i>
-            <span class="password-toggle-btn" id="togglePasswordAdmin" aria-label="Toggle password visibility">
-              <i class="fas fa-eye"></i>
-            </span>
-            <div class="invalid-feedback ps-2">Password must be at least 6 characters.</div>
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" class="btn-premium bg-danger border-0 w-100 py-3 rounded-pill mb-3 mt-3" style="box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.3);">
-            <i class="fas fa-shield-alt me-2"></i>Access Admin Console
-          </button>
-
-          <!-- Navigation Links -->
-          <div class="text-center mt-3 small">
-            <a href="student-login.html" class="text-primary font-weight-bold text-decoration-none"><i class="fas fa-user-graduate me-1"></i>Access Student Portal</a>
-          </div>
-          <div class="text-center mt-2 small">
-            <a href="index.html" class="text-decoration-none text-secondary"><i class="fas fa-arrow-left me-1"></i>Back to Home</a>
-          </div>
-
-        </form>
-      </div>
-
     </div>
+
+    <!-- Right Screen: Glass Card Login -->
+    <div class="col-lg-6 d-flex align-items-center justify-content-center p-4" style="background-color: var(--bg-color); position: relative;">
+      <!-- Mobile background spot -->
+      <div class="glow-spot-accent d-block d-lg-none" style="top: 10%; right: 10%;"></div>
+      
+      <div class="auth-card glass-card glow-border w-100" style="max-width: 450px; z-index: 1; padding: 2.5rem 2rem;">
+        
+        <!-- Header -->
+        <div class="auth-header text-center mb-4">
+          <a href="index.html" class="d-inline-flex align-items-center gap-2 text-danger text-decoration-none mb-3" style="font-weight: 800; font-size: 1.55rem; letter-spacing: -0.5px;">
+            <i class="bi bi-shield-fill-lock"></i>
+            <span style="background: linear-gradient(135deg, var(--danger-color), var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EduCloud Admin</span>
+          </a>
+          <h2 class="fw-bold text-primary mb-1" style="font-size:1.6rem; letter-spacing:-0.5px;">Console Login</h2>
+          <p class="text-secondary small">Sign in to your administrative account</p>
+        </div>
+
+        <!-- Body Form -->
+        <div class="auth-body">
+          <form id="admin-login-form" novalidate>
+            
+            <!-- Username Input -->
+            <div class="form-group-custom">
+              <input type="text" id="admin-username" class="form-control-custom" placeholder="Administrator Username" required autocomplete="username">
+              <i class="bi bi-person-badge-fill"></i>
+              <div class="invalid-feedback ps-2">Please enter your administrator username.</div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group-custom">
+              <input type="password" id="admin-password" class="form-control-custom" placeholder="Console Password" required autocomplete="current-password">
+              <i class="bi bi-key-fill"></i>
+              <span class="password-toggle-btn" id="togglePasswordAdmin" aria-label="Toggle password visibility">
+                <i class="bi bi-eye-fill"></i>
+              </span>
+              <div class="invalid-feedback ps-2">Password must be at least 6 characters.</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-premium bg-danger border-0 w-100 py-3 rounded-pill mb-3 mt-3" style="box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.3);">
+              <i class="bi bi-shield-lock-fill me-2"></i>Access Admin Console
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="text-center mt-4 small text-secondary">
+              Looking for student tools? <a href="student-login.html" class="text-primary font-weight-bold text-decoration-none ms-1">Access Student Portal</a>
+            </div>
+            <div class="text-center mt-3 border-top pt-3 small" style="border-color: var(--border-color) !important;">
+              <a href="index.html" class="text-decoration-none text-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-arrow-left-short fs-5"></i> Back to Home
+              </a>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Global App JS -->
   <script src="js/app.js"></script>
-  <!-- Admin Script Logic -->
+  <!-- Admin Specific JS -->
   <script src="js/admin.js"></script>
 </body>
 </html>
